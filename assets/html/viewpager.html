@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+
+
+<link rel='stylesheet' href='../css/swiper.min.css'>
+
+<script src="../js/jquery-1.9.1.js"></script>
+<script src="../js/swiper.min.js"></script>
+<script src="../js/idangerous.swiper.min.js"></script>
+<style>
+    html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, a, address, cite, del, em, img, q, u, i, dl, dt, dd, ol, ul, li, form,
+    label, table, tr, th, td,caption, tbody, tfoot, thead, article, aside, details, summary, figure, figcaption, footer, header, menu, nav,
+    section, audio, input, select, textarea {margin:0;padding:0;border:0;;}
+    header,footer,nav,section,menu,article,aside { display:block;}
+
+    body { font-family: '微软雅黑'; color:#666; min-width: 320px; max-width:750px; margin: 0 auto; cursor:default; word-break:break-all;  white-space:normal; -webkit-tap-highlight-color:rgba(255,255,255,0);}
+    body{font-size:26px;background-color:#f5f5f5;}
+    .clearfix { zoom:1;}
+    .clear{ clear: both;}
+    ul{ list-style: none;}
+    img{width:100%;display:block;}
+    /*.p-r{position:relative;}*/
+    a{text-decoration:none;}
+    /*iphone上的Safari解析input[typw="submit"]和input[type="submit"]按钮会以苹果浏览器默认的UI进行渲染，解决发放如下*/
+    input,input[type="button"],input[type="submit"]，input[type="reset"]{-webkit-appearance:none;}
+.header_top{
+    width: 100%;
+    height: 160px;
+    background-color: #3e999f;
+}
+
+    /*header*/
+    .favor-header-bar{
+        z-index:999;
+        /*position: fixed;*/
+        width: 100%;
+        top:0;background-color: #fff;padding:0px : hidden;height:3.46rem;line-height: 3.46rem;border-bottom: 1px solid #e1e1e1;
+
+    }
+    .favor-header-bar li{display: block;width:25%;text-align: center;float: left;margin-left:-1px;height:2.3rem;line-height: 2.3rem;margin-top:0.58rem;border-right: 1px solid #e1e1e1;position: relative;}
+    .favor-header-bar a{font-size:1.1rem;color:#333;display:block;padding-bottom: 0.5rem;width:85%;margin:0 auto;}
+    .favor-header-bar li:last-child{border-right:none;}
+    .favor-header-bar li.default a{color:#139dea;border-bottom: 2px solid #139dea;}
+    .favor-header-bar li span{position: absolute;display: block;width:25%;top:-0.4rem;right:0.2rem;max-width: 32px;}
+    /*favor-list*/
+    .favor-list.swiper-container{margin-top:0rem;width:100%;}
+    .favor-list dl{overflow:hidden;padding:1.1rem;border-bottom: 1px solid #e1e1e1;background-color: #fff;}
+    .favor-list a:first-child dl{border-top:1px solid #e1e1e1;}
+    .favor-list dt,.favor-list dd{float: left;}
+    .favor-list dt{width:30%;position: relative;}
+    .favor-list dt span{display: block;width:0.92rem;height:0.92rem;background-color: #fd3d3d;border-radius: 100%;-webkit-border-radius: 100%;-moz-border-radius: 100%;-ms-border-radius: 100%;-o-border-radius: 100%;
+        position: absolute;top:-0.5rem;right: -0.5rem;}
+    .favor-list dd{width:61%;margin-left:1rem;line-height:100%;}
+    .favor-list dd small{color:#9c9c9c;font-size: 0.92rem;display: block;}
+    .favor-list dd p{font-size:1.077rem;color:#666;display: block;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;margin:0;}
+    .favor-list dd h2{font-weight: normal;font-size:1.15rem;color:#333;}
+    .favor-list a{display: block;width: 100%;}
+    /*nofavor*/
+    .nofavor{width:46.8%;margin:16.5% auto 0 auto;}
+
+
+
+
+    @media screen and (min-width: 319px) and (max-width : 374px){
+        .favor-list dt span{width:0.7rem;height:0.7rem;top:-0.3rem;right:-0.3rem;}
+        .favor-list dd{line-height: 90%;}
+        .favor-list dd small{font-size: 0.85rem;}
+        .favor-list dd p{font-size:0.92rem;}
+        .favor-list dd h2{font-size:1.1rem;}
+
+    }
+    .header_top{
+        width: 100%;
+    }
+</style>
+<title>优惠促销</title>
+</head>
+<body>
+<div class="header_top"> 我的头部</div>
+
+<!-- header -->
+
+<header class="favor-header-bar" id="fixedMenu_keleyi_com">
+    <ul class="tabs">
+        <li class="default"><a href="javascript:void(0);" id="btn1" hidefocus="true">热门</a><span><img src="../images/hot.png"></span></li>
+        <li><a href="javascript:void(0);" id="btn2" hidefocus="true">宽带</a></li>
+        <li><a href="javascript:void(0);" id="btn3" hidefocus="true">流量</a></li>
+        <li><a href="javascript:void(0);" id="btn4" hidefocus="true">充值</a></li>
+    </ul>
+</header>
+<!-- slideTo tab -->
+<div class="swiper-container favor-list">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a href="">
+                <dl>
+                    <dt>
+                        <img src="../images/pic1-favor.png">
+                        <span></span>
+                    </dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕我们嗨起来自己都害怕我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt>
+                        <img src="../images/pic1-favor.png">
+                    </dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic3-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕我们嗨起来自己都害怕我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic1-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+        </div>
+        <div class="swiper-slide margin19">
+            <a href="">
+                <dl>
+                    <dt>
+                        <img src="../images/pic3-favor.png">
+                        <span></span>
+                    </dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕我们嗨起来自己都害怕我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt>
+                        <img src="../images/pic3-favor.png">
+                    </dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic3-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕我们嗨起来自己都害怕我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic3-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+        </div>
+        <div class="swiper-slide">
+           <div class="nofavor">
+                <img src="../images/panda.png">
+           </div>
+        </div>
+        <div class="swiper-slide" >
+            <a href="">
+                <dl>
+                    <dt>
+                        <img src="../images/pic1-favor.png">
+                        <span></span>
+                    </dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕我们嗨起来自己都害怕我们嗨起来自己都害6156565165151551516516351615616161631616怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt>
+                        <img src="../images/pic1-favor.png">
+                    </dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic3-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕我们嗨起来自己都害怕我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic1-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic1-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic1-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic1-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>
+            <a href="">
+                <dl>
+                    <dt><img src="../images/pic1-favor.png"></dt>
+                    <dd>
+                        <h2>1G流量免费送</h2>
+                        <p>我们嗨起来自己都害怕</p>
+                        <small>活动截止到2016-07-01</small>
+                    </dd>
+                </dl>
+            </a>        <a href="">
+            <dl>
+                <dt><img src="../images/pic1-favor.png"></dt>
+                <dd>
+                    <h2>1G流量免费送</h2>
+                    <p>我们嗨起来自己都害怕</p>
+                    <small>活动截止到2016-07-01</small>
+                </dd>
+            </dl>
+        </a>
+
+        </div>
+    </div>
+</div>
+<script>
+    var webviewAndroidScript = window.injs;
+
+    var mySwiper = new Swiper('.swiper-container', {
+        autoHeight: true,
+        onSlideChangeStart: function () {
+            $(".tabs .default").removeClass('default');
+            $(".tabs li").eq(mySwiper.activeIndex).addClass('default');
+            webviewAndroidScript.setOnDrawerBackEnabled(""+mySwiper.activeIndex);
+        }
+    });
+    $(".tabs li").on('click', function (e) {
+        e.preventDefault();
+        $(".tabs .default").removeClass('default');
+        $(this).addClass('default');
+        mySwiper.swipeTo($(this).index());
+    });
+    $(".tabs li").click(function (e) {
+        e.preventDefault();
+    });
+
+    function initValue() {
+
+    }
+    //下拉刷新
+    function onPullDown() {
+        webviewAndroidScript.onStopRefresh();
+    }
+
+    //上拉加载更多
+    function onPullUp() {
+        webviewAndroidScript.onStopRefresh();
+    }
+
+    $(function () {//滑动到顶部固定不动
+        var dv = $('#fixedMenu_keleyi_com'), st;
+        dv.attr('otop', dv.offset().top); //存储原来的距离顶部的距离
+        $(window).scroll(function () {
+            st = Math.max(document.body.scrollTop || document.documentElement.scrollTop);
+            if (st > parseInt(dv.attr('otop'))) {
+                if (dv.css('position') != 'fixed') dv.css({'position': 'fixed', top: 0});
+            } else if (dv.css('position') != 'static') dv.css({'position': 'static'});
+        });
+    });
+
+</script>
+</body>
+</html>
+

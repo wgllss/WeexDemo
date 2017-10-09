@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>news</title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta name="viewport" content="width=750, user-scalable=no">
+<style>
+  html, body{
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+<h1>news</h1>
+<text onclick ="toast()">toast</text>
+<script type="text/javascript">
+    function toast() {
+        window.nativeInterface.toast("news toast");
+    }
+
+    function callnativeh5(json) {
+        alert('callnativeh5'+json);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>layui在线调试</title>
+    <style>
+        body{margin: 10px;}
+    </style>
+</head>
+<script type="text/javascript" src="../js1/jquery.js"></script>
+<script type="text/javascript" src="../js1/jquery.lazyload.js"></script>
+<style>
+    h1{
+        color: #00BDFF;
+    }
+</style>
+<body>
+
+<div id="view">
+    <div>5151</div>
+</div>
+<script src="../js/laytpl.js"></script>
+<script src="../js/layui.js"></script>
+<script id="demo" type="text/html">
+    {{# if( datu.list.length > 0 ){ }}
+    <h1 >{{ title }}</h1>
+    {{# }}}
+    <ul>
+        {{# for(var i = 0, len = datu.list.length; i < len; i++){ }}
+        <li>
+            <span id="{{i}}{{ d.list[i].name }}">姓名：{{datu.list[i].name }}</span>
+            <span>城市：{{ datu.list[i].city }}</span>
+        </li>
+        {{# } }}
+    </ul>
+</script>
+
+<script>
+    var webviewAndroidScript =window.injs;
+
+    function initValue() {
+
+    }
+
+    //下拉刷新
+    function onPullDown() {
+        webviewAndroidScript.onStopRefresh();
+        //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
+        //var paramsJson = "{\"seq\":"+viewPointSeq+"}";
+        //webviewAndroidScript.networkRequest("7001",whichThred1,whichThred2,"comp/dav/getDvViewPoint","GET",paramsJson,"0");
+    }
+
+    //上拉加载更多
+    function onPullUp() {
+        webviewAndroidScript.onStopRefresh();
+    }
+
+    //网络成功回调数据 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
+    function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
+        if (strMsgWhat == 7001) {//获取最终页面结果
+            json = JSON.parse(json);
+        }
+    }
+
+    //改变皮肤
+    function changeSkin(skinType) {
+
+    }
+
+    var datu = {
+
+        list: []
+    };
+    var title ="";
+
+
+    setTimeout(function () {//模拟网络请求
+//        data.title="56126565";
+
+//        data.title='88888';
+        var bb = {
+            name: 'dd',
+            city: '杭州'
+        }
+        title='我是标题62156';
+
+
+        datu.list.push(bb);
+        var gettpl = document.getElementById('demo').innerHTML;
+        laytpl(gettpl).render(datu, function(html){
+            $("#view").append( html);
+            $("#view").append( html);
+//            alert( $("#0dd").html());
+            try {
+                datu.list.splice( 0, datu.list.length );
+            }catch (e){
+                //alert(e.toString());
+            }
+        });
+
+        $("h1").html( data.title);
+    }, 2000);
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mobile-1.4.1.min.js" type="text/javascript"></script>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .item-wrap {
+        overflow: hidden;
+    }
+
+    .item-wrap .item {
+        border-bottom: 1px #fff solid;
+        width: 125%;
+        overflow: hidden;
+        position: relative;
+        display: -webkit-box;
+        -webkit-transition: all 0.3s linear;
+    }
+
+    .item-wrap .item .img-item {
+        width: 50px;
+        height: 50px;
+    }
+
+    .item-wrap .item .img-item img {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .item-wrap .item .txt-item {
+        padding-top: 10px;
+        margin-right: 25px;
+        font-size: 14px;
+        line-height: 24px;
+        color: #fff;
+        -webkit-box-flex: 1;
+    }
+
+    .delect-btn {
+        width: 20%;
+        margin-left: 15px;
+        color: #fff;
+        background: #0f0;
+        z-index: 999;
+        display: block;
+        text-align: center;
+        padding-top: 9%;
+    }
+
+    .item-wrap .selected {
+        -webkit-transform: translate(-16%);
+        -webkit-transition: all 0.3s linear;
+    }
+
+    .clearfix {
+        background-color: #56b6c2;
+    }
+
+    .ui-loader-default {
+        display: none
+    }
+
+    .ui-mobile-viewport {
+        border: none;
+    }
+
+    .ui-page {
+        padding: 0;
+        margin: 0;
+        outline: 0
+    }
+</style>
+
+<body>
+<div class="item-wrap">
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+    <div class="item clearfix" onclick="javascript:onItemClick()">
+        <div class="img-item">
+            <img src="../images/dav_comment.png">
+        </div>
+        <div class="txt-item">
+            <p class="name">
+                小黄人
+            </p>
+            <p class="txt">
+                小黄人小黄人小黄人小黄人
+            </p>
+        </div>
+        <i class="arrow"></i>
+        <a class="delect-btn">删除</a>
+    </div>
+</div>
+<script>
+    var webviewAndroidScript = window.injs;
+
+    $(".item").on('swipeleft', function (event) {
+        event.preventDefault();
+        /* Act on the event */
+        $(this).addClass('selected').siblings('.item').removeClass('selected');
+        $(this).find('.delect-btn').on('click', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            $(this).parent(".item").animate({
+                    height: 0,
+                    width: 0
+                },
+                300, function () {
+                        /* stuff to do after animation is complete */
+                    $(this).remove();
+                });
+        });
+    });
+    $(".item").on('swiperight', function (event) {
+        event.preventDefault();
+        /* Act on the event */
+        $(this).removeClass('selected');
+    });
+
+    function onItemClick() {
+        $(".item").removeClass('selected');
+    }
+
+    function initValue() {
+        webviewAndroidScript.setOnDrawerBackEnabled("1");
+//        var maxWidth =document.getElementById("img").getElementsByTagName("ul")[0].getElementsByTagName("li").length * 105;
+//        $(".hlist").css("width",maxWidth+"px");
+    }
+
+    //下拉刷新
+    function onPullDown() {
+        webviewAndroidScript.onStopRefresh();
+    }
+
+    //上拉加载更多
+    function onPullUp() {
+        webviewAndroidScript.onStopRefresh();
+    }
+</script>
+</html>

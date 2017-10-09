@@ -1,0 +1,896 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<link rel="alternate" media="handheld" href="">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="width">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="../js/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<style>
+*{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+html{ padding:0; margin:0;}
+body{padding:0; margin:0; background:#FFF;}
+img,ul,li,p{padding:0; margin:0;}
+
+body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-size: 16px;
+	word-wrap: break-word;
+	-webkit-text-size-adjust: 100%;
+	padding-bottom: 0px;
+}
+h1 {
+	margin: auto;
+}
+input {
+	font-size: 1em;
+}
+p, ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a, a:visited {
+	text-decoration: none !important;
+}
+p span {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	font-size: 15px !important;
+}
+u {
+	text-decoration: none
+}
+table {
+	width: 100% !important;
+}
+td {
+	width: 10% !important;
+}
+
+.topicTitle {
+margin-left:10px;
+margin-right:10px; 
+margin-top:10px;
+font-weight:blod;
+font-size:20px;
+
+text-overflow: -o-ellipsis-lastline;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+
+}
+.top_bar { 
+overflow:auto;
+padding:0px 10px 0px 10px;
+}
+.top_bar .left{ 
+float:left;
+}
+.top_bar .right{ 
+float:right; 
+margin-top:5px;
+font-size:12px;
+}
+.top_bar .left ul,li{ 
+ list-style-type:none;
+ float:left; 
+ font-size:12px;
+}
+.top_bar .left ul{
+margin-top:5px;
+}
+.topic_top_line{
+margin-top:10px;
+height:1px;
+width:100%;
+background:#DDDDDD;
+}
+.main_topic{
+margin-top:10px;
+padding-left:10px;
+padding-right:10px;
+}
+.main_topic_header, .main_topic_content {
+width: 100%
+}
+.main_topic_header .main_topic_user { 
+overflow:auto;
+}
+.main_topic_header .main_topic_user .header_left { 
+float:left;
+}
+
+.main_topic_header .main_topic_user .header_right { 
+float:right;
+margin-top:7px;
+}
+
+.enter_spmatch{
+background:#fdc94b;
+padding: 6px 10px 5px 10px;
+color:#ffffff;
+font-size:14px;
+-webkit-border-radius: 8px;
+}
+
+.main_topic_header, .main_topic_content {
+margin-top:10px;
+}
+.main_topic_header .main_topic_user ul,li{ 
+list-style-type:none;
+float:left; 
+font-size:12px;
+}
+.main_topic_user_name{
+color:#1191f6;
+font-size:16px;
+}
+.theLandlord{
+background:#1191f6;
+padding: 3px 5px 3px 5px;
+color:#ffffff;
+}
+.dian_zan_jia_you_peng_chang{
+color:#ff0000;
+}
+.reply_tab_lable{
+width:97%;
+overflow:auto;
+margin-top:10px;
+margin-bottom:-1px;
+padding-left:5px;
+padding-top:3px;
+padding-bottom:3px;
+
+border-top: solid ;
+border-top-style: outset;
+border-top-color: #DDDDDD;
+border-top-width:1px;
+
+border-left: solid ;
+border-left-style: outset;
+border-left-color: #1191f6;
+border-left-width:5px;
+background:#F0F0F0;
+}
+.space{
+width:100%%;
+height:1px;
+background:#DDDDDD;
+margin-top:-10px;
+}
+.reply_light,reply_all{
+
+}
+div[class^="reply_light_item_"]{
+margin-top:10px;
+}
+div[class^="reply_light_item_"], div[class^="reply_all_item_"]{
+padding:0px 10px 10px 10px;;
+overflow:auto;
+}
+.reply_user {
+overflow:auto;
+color:#1191f6;
+}
+.reply_user .reply_user_name{
+margin-top:10px;
+float:left;
+}
+.reply_user .pengchang_flag{
+float:right;
+margin-top:20px;
+margin-right:5px;
+}
+.reply_user .floor{
+float:right;
+color:#111111;
+font-size:14px;
+background:#00000000;
+margin-top:-5px;
+
+height:44px;
+-webkit-border-radius: 0px;
+border-style:solid;
+border-color:#00000000;
+border-width:0px;
+}
+.reply_content{
+margin-left:44px;
+}
+.reply_down{
+margin-top:10px;
+margin-left:44px;
+}
+.reply_down .reply_down_left{
+float:left;
+font-size:12px;
+}
+.reply_down .reply_down_right{
+float:right;
+}
+.floor_text{
+color:#111111;
+font-size:12px;
+margin-top:24px;
+margin-left:0px;
+text-align:right;
+}
+.zhi_hu_layout{
+overflow:auto;
+width:330px;
+}
+.qipao{
+margin-left:-33px;
+}
+.zhi_hu_layout .zhi_hu_status{
+margin-left:-142px;
+margin-top:13px;
+color:#FFFFFF;
+font-size:11px;
+position:absolute
+}
+.zhi_hu_layout .zhi_hu_time{
+margin-left:-38px;
+margin-top:4px;
+font-size:11px;
+width:20px;
+}
+.zhi_hu_layout ul li{ 
+margin-top:10px;
+margin-left:44px;
+}
+.stock{
+width:85%;
+margin-left:44px;
+font-size: 12px;
+margin-top:10px;
+margin-bottom:10px;
+border:1px solid #DDDDDD;
+background:#FDFDFD;
+padding-bottom:3px;
+}
+
+.stock.penc_tr{
+font-size:12px; 
+width:100%;
+border-spacing:35px;
+border-collapse:separate;
+}
+
+.stockCode {
+font-size:12px; 
+width:28%;
+text-align:center;
+color:#1191f6;
+}
+.stock_more{
+display: none;
+}
+.stock_more_button{
+font-size:12px; 
+width:18%;
+text-align:center;
+color:#1191f6;
+}
+.best{
+ 	padding-left:2px;
+ 	padding-right:3px;
+ 	padding-top:1px;
+ 	padding-bottom:1px;
+ 	text-align:center;
+ 	font-weight:100;
+ 	line-height:16px;
+	vertical-align:17%;
+	margin-right:10px;
+ 	font-size:13px;
+ 
+ 	margin-bottom:5px;
+ 	border:1px solid #1191f6;
+ 	color:#1191f6;
+ 	background:#FFFFFF;
+}
+.number{
+margin-left:0px; 
+padding-bottom:5px;
+color:#000000;
+vertical-align:30%;
+}
+
+
+.dashang{
+	margin:0 auto;   
+    width:100px;   
+    height:35px;
+	background:#E15c4b;
+	color:#ffffff;
+	text-align:center;
+	-webkit-border-radius: 8px;
+	font-size:22px;
+	padding-top:4px;
+	font-weight:bold;
+}
+.dashang_num{
+	color:#ff0000;
+	text-align:center;
+	font-size:14px;
+	margin-top:20px;
+}
+.handler_button_left{
+float:left;
+}
+.jubao{
+	float:right; 
+	text-align:center;
+	font-size:14px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:3px;
+	color:#000000;
+}
+.jiayou_text{
+	color:#1191f6;
+	font-size:14px;
+}
+.dashang_text{
+	color:#1191f6;
+	font-size:14px;
+}
+.diancan_num{
+	margin-left:5px; 
+	padding-bottom:0px;
+	color:#000000;
+	vertical-align:15%;
+	font-size:12px;
+}
+.jiayou_num{
+	margin-left:5px; 
+	color:#000000;
+	vertical-align:5%;
+	font-size:12px;
+	padding-top:2px;
+}
+
+  
+.gird_layout{   
+	 width: 97%;  
+	 height:80px;
+	 max-height:200px;
+	 min-height:45px;
+	 margin:0 auto; 
+	 padding-top:2px;
+	 padding-bottom:2px;
+	 background:#0ef000;
+	 text-align:center;  
+} 
+.box{
+ 	width: 97%;  
+	margin:0 auto; 
+}   
+.box li{
+    display:inline-block;  
+	float:none;
+	width:12.5%;
+	height:35px;
+	line-height: 35px;  
+	margin-top:2px;
+}   
+.box li a,.box li a img:visited{   
+	 display:block;   
+	 text-align: center;   
+	 margin-top: 5px;   
+	 position: relative;   
+	 z-index: 1;   
+}   
+.box li a img:hover{
+	border-color: #f00;
+	z-index: 2;
+} 
+.box li a img {
+	width:35px;
+	height:35px;
+	-webkit-border-radius: 50%;
+} 
+</style>
+</head>
+
+<body>
+<div class="topicPage" id="topicPage" >
+	<div id="topicTitle" class="topicTitle"><span class="best">精</span>幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参  幽兰天下：9月2日涛金早参</div>
+	<div class="top_bar">
+		<div class="left">
+			<ul>
+				<li><img src="../images/tx.png" width="17" height="17" /></li>
+				<li class="number">68475</li>
+				<li style="margin-left:10px;"><img src="../images/tx.png" width="17" height="17" /></li>
+				<li class="number">68475</li>
+			</ul>
+		</div>
+		<div class="right">
+			10-13 13:02
+		</div>
+	</div>
+	<div class="topic_top_line"></div>
+	<div class="main_topic">
+		<div class="main_topic_header">
+			<div class="main_topic_user">
+				<div class="header_left">
+					<ul>
+						<li><img src="../images/tx.png" width="34" height="34" /></li>
+						<li style="margin-left:10px; margin-top:6px;"><span class="main_topic_user_name">老刀子</span></li>
+						<li style="margin-left:10px; margin-top:8px;"><span class="theLandlord">&nbsp;楼主&nbsp;</span></li>
+					</ul>
+				</div>
+				<div class="header_right"><span class="enter_spmatch">进入比赛</span></div>
+			</div>
+		</div>
+		<div class="stock">
+				<table id="adfd" width="100%" class="penc_tr" >
+					<tr>
+						<td  style="font-size:12px; width:28%; text-align:center;">看好的股</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">3日</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">5日</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">1月</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">1季</td>
+					</tr>
+					<tr>
+						<td  class="stockCode"><a href="https://www.baidu.com/" target="_blank">同益股份是是<br/>300538</a></td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>						
+					<tr >
+						<td  style="font-size:12px; width:28%; text-align:center;"></td>
+						<td  style="font-size:12px; width:18%; text-align:center;"></td>
+						<td  class="stock_more_button">展开</td>
+						<td  style="font-size:12px; width:18%; text-align:center;"></td>
+						<td  style="font-size:12px; width:18%; text-align:center;"></td>
+					</tr>
+				</table>
+			</div>
+		
+		<div class="main_topic_content">
+			<p>非银金融搞起来！<br /> <a style="color:#5193C7;text-decoration:underline;" href="mMoreTopic.action?userID=154034" target="_blank">@赵老哥</a>  <br />以下略去三万字。</p>
+			<!--<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对外关系的优先位置，希望同中方不断增进政治互信，推进务实合作，有效管控分歧，推动越中传统友谊和全面战略合作伙伴关系稳定、健康发展。习近平治国理政文化思路的“六个一”是一个相互联系、内在统一有机整体，中国特色社会主义伟大旗帜和社会主义核心价值观是这个“大思路”的主题灵魂，中华民族优秀传统文化是它的深厚根基，加强社会主义意识形态建设是其战略重点，坚持中国特色社会主义文化发展道路是其内在保证，建设社会主义文化强国是其发展目标。 </p>-->
+		</div>
+	
+		<div class="dashang">打赏</div>
+		<div class="dashang_num">23<span class="dashang_text" >人打赏</span></div>
+		
+		
+		<div class="gird_layout">  
+			 <ul class="box">  
+	  			  <li><a  ><img class="lazy" src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" data-original="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/dongmantuphenxiaozhi.jpg"/></a></li>   
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/yejuhuatupian.jpg"/></a></li>  
+					  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xingkong32H58PICPre.jpg"/></a></li>
+				  <li><a  ><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li> 
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/dongmantuphenxiaozhi.jpg"/></a></li>   
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/yejuhuatupian.jpg"/></a></li>  
+			  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xingkong32H58PICPre.jpg"/></a></li>
+				  <li><a  ><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li> 
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/dongmantuphenxiaozhi.jpg"/></a></li>   
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/yejuhuatupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xingkong32H58PICPre.jpg"/></a></li>
+				  <li><a  ><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li> 
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/dongmantuphenxiaozhi.jpg"/></a></li>   
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/yejuhuatupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xingkong32H58PICPre.jpg"/></a></li>
+				  <li><a  ><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li> 
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/dongmantuphenxiaozhi.jpg"/></a></li>   
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/yejuhuatupian.jpg"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xingkong32H58PICPre.jpg"/></a></li>
+				  <li><a  ><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58"/></a></li>  
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li> 
+				  <li><a  ><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li> -->
+			 </ul>  
+	  </div> 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div style="margin-top:30px;">
+			<div class="handler_button_left">
+				<ul>
+					<li id="handler_jia_you" style="margin-top:2px;"><span class="jiayou_text" >加油</span><span class="jiayou_num">7</span></li>
+					<li style="margin-left:-10px;margin-top:-15px;"><img src="../images/jinghua.png" width="30" height="17" /></li>
+					<li id ="handler_dian_zan" style="margin-left:20px;margin-top:1px;"><img src="../images/dianzan.png" width="17" height="17" /><span class="diancan_num">681515</span></li>
+				</ul>
+			</div>
+			<div class="jubao" id="handler_ju_bao">举报</div>
+		</div>
+	</div>
+	<div style="width:100%;height:10px; overflow:auto;"></div>
+	<div class="reply_tab_lable">这些回复亮了	</div>
+	<div class="reply_light">
+		<div class="space"></div>
+		<div class="reply_light_item_1">
+			<div class="reply_user">
+				<ul>
+					<li><img src="../images/tx.png" width="34" height="34" /></li>
+					<li style="margin-left:10px; margin-top:5px;"><span class="main_topic_user_name">老刀子</span></li>
+				</ul>
+			</div>
+			<div class="reply_content">
+				<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对</p>
+			</div>
+			<div class="reply_down">
+				<div class="reply_down_left">10-13 13:02</div>
+				<div class="reply_down_right">
+					<ul>
+						<li><div id="dian_liang"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+				
+						<li style="margin-left:10px;"><div id="yin_yong"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="space"></div>
+		<div class="reply_light_item_2">
+			<div class="reply_user">
+				<ul>
+					<li><img src="../images/tx.png" width="34" height="34" /></li>
+					<li style="margin-left:10px; margin-top:10px;"><span class="main_topic_user_name">老刀子</span></li>
+				</ul>
+			</div>
+			<div class="reply_content">
+				<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对</p>
+			</div>
+			<div class="reply_down">
+				<div class="reply_down_left">10-13 13:02</div>
+				<div class="reply_down_right">
+					<ul>
+						<li><div id="dian_liang"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+						
+						<li style="margin-left:10px;"><div id="yin_yong"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="width:100%;height:10px; overflow:auto;"></div>
+	<div class="reply_tab_lable">全部回复	</div>
+	<div class="reply_all">
+		<div class="space"></div>
+		<div class="reply_all_item_1" >
+			<div class="reply_user">
+				<div class="reply_user_name">
+					<ul>
+						<li><img src="../images/tx.png" width="34" height="34" /></li>
+						<li style="margin-left:10px; margin-top:10px;"><span class="main_topic_user_name">老刀子</span></li>
+					</ul>
+				</div>
+				<div class="floor"><div class="floor_text">地板145415145</div></div>
+				<div class="pengchang_flag"><img src="../images/beipengchang2.png" width="34" height="18" /></div>
+			</div>
+			<div class="reply_content">
+				<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对</p>
+			</div>
+			<div class="reply_down">
+				<div class="reply_down_left">10-13 13:02</div>
+				<div class="reply_down_right">
+					<ul>
+						<li><div id="dian_liang"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+						<!--<li class="number">68475</li>-->
+				<!--		<li style="margin-left:10px;"><img src="../images/tx.png" width="17" height="17" /></li>
+						<li class="number">68475</li>-->
+						
+						<li style="margin-left:10px;"><div id="yin_yong"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="space"></div>
+		<div class="reply_all_item_2">
+			<div class="reply_user">
+				<div class="reply_user_name">
+					<ul>
+						<li><img src="../images/tx.png" width="34" height="34" /></li>
+						<li style="margin-left:10px; margin-top:10px;"><span class="main_topic_user_name">老刀子</span></li>
+					</ul>
+				</div>
+				<div class="floor"><div class="floor_text">地板</div></div>
+				<div class="pengchang_flag"><img src="../images/beipengchang2.png" width="34" height="18" /></div>
+			</div>
+			<div class="stock">
+				<table id="adfd" width="100%" class="penc_tr" >
+					<tr>
+						<td  style="font-size:12px; width:28%; text-align:center;">看好的股</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">3日</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">5日</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">1月</td>
+						<td  style="font-size:12px; width:18%; text-align:center;">1季</td>
+					</tr>
+					<tr>
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>
+					<tr style="display:none">
+						<td  class="stockCode">同益股份是是<br/>300538</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:green;">-0.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+						<td  style="font-size:12px; width:18%; text-align:center; color:red;">78.68%</td>
+					</tr>						
+					<tr >
+						<td  style="font-size:12px; width:28%; text-align:center;"></td>
+						<td  style="font-size:12px; width:18%; text-align:center;"></td>
+						<td  class="stock_more_button">展开</td>
+						<td  style="font-size:12px; width:18%; text-align:center;"></td>
+						<td  style="font-size:12px; width:18%; text-align:center;"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="reply_content">
+				<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对</p>
+			</div>
+			<div class="reply_down">
+				<div class="reply_down_left">10-13 13:02</div>
+				<div class="reply_down_right">
+					<ul>
+						<li><a href="javascript:void(0);" data-type="90" ><img src="../images/xiao_dianzan.png" width="17" height="17" data-type="1"/><span class="number">681515</span></a></li>
+						<li style="margin-left:10px; margin-top:1px;"><a href="javascript:void(0);" data-type="91"><img src="../images/pinglun.png" width="17" height="17" /></a><a href="javascript:void(0);" class="number">回复</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="space"></div>
+		<div class="reply_all_item_3">
+			<div class="reply_user">
+				<div class="reply_user_name">
+					<ul>
+						<li><img src="../images/tx.png" width="34" height="34" /></li>
+						<li style="margin-left:10px; margin-top:10px;"><span class="main_topic_user_name">老刀子</span></li>
+					</ul>
+				</div>
+				<div class="floor"><div class="floor_text">地板</div></div>
+				<div class="pengchang_flag"><img src="../images/tx.png" width="64" height="15" /></div>
+			</div>
+			<div class="reply_content">
+				<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对</p>
+			</div>
+			
+			<div class="zhi_hu_layout">
+				<ul>
+					<li style="margin-top:12px;"><img src="../images/tx.png" width="34" height="34" /></li>
+              		<li><div class="qipao"><img src="../images/home_yuyin.png" width="180" height="40" /></div></li>
+                	<li><div class="zhi_hu_status">48小时未回已过期</div></li>
+               		<li><div class="zhi_hu_time">60"</dir></li>				
+				</ul>
+			</div>
+			
+			<div class="reply_down">
+				<div class="reply_down_left">10-13 13:02</div>
+				<div class="reply_down_right">
+					<ul>
+						<li><div id="dian_liang"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+						<!--<li class="number">68475</li>-->
+				<!--		<li style="margin-left:10px;"><img src="../images/tx.png" width="17" height="17" /></li>
+						<li class="number">68475</li>-->
+						
+						<li style="margin-left:10px;"><div id="yin_yong"><img src="../images/tx.png" width="17" height="17" /><span class="number">681515</span></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="space"></div>
+		<div class="reply_all_item_4" id="reply_all_item" data-replyID="1561616516">
+			<div class="reply_user">
+				<div class="reply_user_name">
+					<ul>
+						<li><img src="../images/tx.png" width="34" height="34" /></li>
+						<li style="margin-left:10px; margin-top:10px;"><span class="main_topic_user_name">老刀子</span></li>
+					</ul>
+				</div>
+				<div class="floor"><div class="floor_text">99999楼</div></div>
+				<!--<div class="pengchang_flag"><img src="../images/tx.png" width="64" height="15" /></div>-->
+			</div>
+			
+			<div class="reply_content">
+				<p>阮春福表示，越中是山水相连的友好邻邦。传承和发扬胡志明主席和毛泽东主席等两国老一代领导人精心培育的越中传统友谊，不仅符合我们双方长远和根本利益，也有利于地区和平与繁荣。越方铭记和感谢中国党和政府在越南民族解放和社会主义建设事业中给予的支持和帮助，始终将越中关系置于对</p>
+			</div>
+			
+			<div class="zhi_hu_layout">
+				<ul>
+					<li style="margin-top:12px;"><img src="../images/tx.png" width="34" height="34" /></li>
+              		<li><div class="qipao"><img src="../images/home_yuyin.png" width="180" height="40" /></div></li>
+                	<li><div class="zhi_hu_status">48小时未回已过期</div></li>
+               		<li><div class="zhi_hu_time">60"</dir></li>				
+				</ul>
+			</div>
+			
+			<div class="reply_down">
+				<div class="reply_down_left">10-13 13:02</div>
+				<div class="reply_down_right">
+					<ul>
+						<li><a href="javascript:void(0);" data-type="90" ><img src="../images/xiao_dianzan.png" width="17" height="17" data-type="1"/><span class="number">681515</span></a></li>
+						<li style="margin-left:10px; margin-top:1px;"><a href="javascript:void(0);" data-type="91"><img src="../images/pinglun.png" width="17" height="17" /></a><a href="javascript:void(0);" class="number">回复</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="text-align:center;">afddfafdadfadfafddfadfda</div>
+</div>
+</body>
+<script type="text/javascript">
+	setTimeout(function() {
+	 	$(".box li a img").lazyload();
+	 },300);
+			    	 	 
+	setTimeout(function() {
+		$(".stockCode a").css("color","#1191f6");//股票名字颜色
+	 },500);//延迟监听事件
+	 
+	$("div[class^='reply_all_item_'] .reply_down .reply_down_right a").click(function(){
+		//if($("div[class^='reply_all_item_'] .reply_down .reply_down_left").length > 0){
+			var replyID = $(this).closest("div[class^='reply_all_item_']").attr("data-replyID");
+			alert(replyID);
+			alert($("div[class^='reply_all_item_'] .reply_down .reply_down_right span").html());
+		//}else{
+		//	alert("不存在");
+		//}
+		//alert($(this).parents("div[class^='reply_all_item_']").attr("data-ID")+"--"+$(this).attr("data-type"));
+	});
+	
+	$(".stock_more_button").click(function(){//点击展开
+		//$(".stock_more_button").html("12324");
+    		$.each($(".penc_tr tr"),function(i){
+    			if(i > 1 && i < $(".penc_tr tr").length - 1){
+    			  	if($(this).is(":hidden")){
+    			 		$(this).slideDown();
+    			 		$(".stock_more_button").html("隐藏");
+    			 	}else{
+    					$(this).slideUp();
+    					$(".stock_more_button").html("展开");
+    			 	}
+    			}
+    		});  
+	 });
+	 
+	  $(".dashang").click(function(){//点赞
+		  
+		  $(".box").children("li").remove();
+		  $(".box").append("<li><a  ><img src=\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58\"/></a></li>");
+		  $(".gird_layout").css("height", "80px");
+		  		 //$("#handler_dian_zan span").html( $("#-1000").html());
+	 });
+	 
+	 $("#handler_dian_zan").click(function(){//点赞
+	 	alert($("#-1000").html("1515"));
+	  		 //$("#handler_dian_zan span").html( $("#-1000").html());
+	 });
+	 
+	 $("#handler_dian_zan").click(function(){//点赞
+	 	alert($("#-1000").html("1515"));
+	  		 //$("#handler_dian_zan span").html( $("#-1000").html());
+	 });
+	 
+	 $("div[class^='reply_all_item_']").mousedown(function() { 
+   		//setTimeout(function() { 
+        	$(this).css("background","#0effff");
+        	var Y =window.event.pageY -document.body.scrollTop;
+        	//var Y = $(this).offset().top - document.body.scrollTop+80;
+			var X = $(this).offset().left; 
+			window.injs.runOnAndroid(X,Y,document.body.clientHeight);
+    	//}, 500); 
+	}); 
+	
+	function dissmissPupwindow (){
+		$("div[class^='reply_all_item_']").css("background","#FFFFFF");
+	}
+	
+	function getData(){
+			
+			try {
+					var c = "fadf---->";
+					c= window.injs.runOnAndroidg(c);
+					$("#topicTitle").html(c);
+			} catch (e) {
+					$("#topicTitle").html(e);
+			}
+	}
+	
+	    //设置文字大小
+    function setTextSize(size){
+    	if(size=='L'){
+    		$("P").css("font-size", "20px"); 
+    	}else if(size=='M'){
+    		$("P").css("font-size", "16px"); 
+    	}else if(size=='S'){
+    		$("P").css("font-size", "14px"); 
+    	}
+    }
+</script>
+</html>

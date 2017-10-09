@@ -1,0 +1,210 @@
+{
+    "versionName":"5.397",
+    "isReplace":false,
+    "skinVersion":"4.213",
+    "replaceMinVersion":"1.0",
+    "topMenu":{
+        "showDividerLine":false,
+        "shouldExpand":false,
+        "menuList":[
+            {
+                "ID":4554,
+                "menuName":"大V观点",
+                "menuNameColor":"#656565,#999999",
+                "menuNameTextSize":13,
+                "orientation":"0",
+                "infoNum":0,
+                "onClickInfo":{
+                   "needLogin":true,
+                   "className":"com.open.taogubaweex.MainActivity",
+                   "optionJson":"[{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"dav/build/src/viewpoint-pager.js\"}]"
+
+                }
+            },
+            {
+                "ID":1005,
+                "menuName":"淘股宝",
+                "menuNameColor":"#656565,#999999",
+                "menuNameTextSize":13,
+                "orientation":"0",
+                "infoNum":0,
+
+                "onClickInfo":{
+                    "needLogin":false,
+                    "className":"com.taoguba.app.activity.DealPlanActivity",
+                    "onEventInfo":"{\"eventName\":\"买啥-淘股宝\",\"eventID\":\"1002\",\"eventType\":\"0\"}"
+                }
+            },
+            {
+                "ID":4034,
+                "menuName":"直播",
+                "menuNameColor":"#656565,#999999",
+                "menuNameTextSize":13,
+                "orientation":"0",
+                "infoNum":0,
+                "infoNumColor":"#00000000",
+                "infoNumSize":10,
+                "infoNumMarginLeft":18,
+                "infoNumMarginTop":7,
+                "onClickInfo":{
+                    "className":"com.open.taogubaweex.MainActivity",
+                    "optionJson":"[{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"storm/build/src/slider-pager.js\"}]",
+                    "onEventInfo":"{\"eventName\":\"股市直播\",\"eventID\":\"4034\",\"eventType\":\"0\"}"
+                }
+            },
+            {
+                "ID":4554,
+                "menuName":"交易练习",
+                "menuNameTextSize":13,
+                "orientation":"0",
+                "onClickInfo":{
+                    "needLogin":false,
+                    "className":"com.taoguba.app.activity.kgame.KGameHomeActivity",
+                    "onEventInfo":"{\"eventName\":\"买啥-交易练习\",\"eventID\":\"1006\",\"eventType\":\"0\"}"
+
+                }
+            },
+            {
+                "ID":1007,
+                "menuName":"牛人榜",
+                 "menuNameColor":"#656565,#999999",
+                "menuNameTextSize":13,
+                "orientation":"0",
+                "infoNum":0,
+                "onClickInfo":{
+                    "className":"com.taoguba.app.activity.TopicOnListActivityNew",
+                   "onEventInfo":"{\"eventName\":\"买啥-牛人榜\",\"eventID\":\"1007\",\"eventType\":\"0\"}"
+                }
+            },
+            {
+                "ID":4554,
+                "menuName":"直呼",
+                "menuNameColor":"#656565,#999999",
+                "menuNameTextSize":13,
+                "orientation":"0",
+                "infoNum":0,
+                "onClickInfo":{
+                    "className":"com.taoguba.app.activity.CommunityActivity",
+                    "specialInfo":"{\"tabHostposition\":2,\"viewPagerItem\":2}"
+                }
+            }
+        ]
+    },
+    "centerMenu":{
+        "showDividerLine":true,
+        "shouldExpand":true,
+        "menuList":[
+            {
+                "ID":4554,
+                "menuName":"实盘比赛",
+                "menuNameTextSize":15,
+                "orientation":"0",
+                "isShowIcon":true,
+                "menuIconWidthAndHeight":25,
+                "infoNumMarginLeft":50,
+                "infoNum":0,
+                "menuIcon":"assets://images/shipan_match.png",
+                "huo_flag_icon_url":"assets://images/huo_flag.png",
+                "huo_flag_marginLeft":50,
+                "huo_flag_marginTop":10,
+                "huo_flag_size":10,
+                "onClickInfo":{
+                    "needLogin":true,
+                    "className":"com.taoguba.app.activity.shipan.TaogubaShiPanTabActivity"
+                }
+            },
+            {
+                "ID":1013,
+                "menuName":"极速开户",
+                "menuNameTextSize":15,
+                "orientation":"0",
+                "isShowIcon":true,
+                "infoNum":0,
+                "menuIconWidthAndHeight":25,
+                "menuIconMarginTopAndButtom":10,
+                "menuIcon":"https://image.taoguba.com.cn/img/2017/08/31/wnfxo15q5k4o.png",
+                "selectMenuIcon":"https://image.taoguba.com.cn/img/2017/08/31/ksusayk61dq4.png",
+                "huo_flag_icon_url":"https://image.taoguba.com.cn/img/2017/09/06/rrjckt9dwyp9.png",
+                "huo_flag_marginLeft":58,
+                "huo_flag_marginTop":-11,
+                "huo_flag_size":42,
+                "onClickInfo":{
+                    "needLogin":false,
+                    "className":"com.taoguba.app.activity.tpy.TpyAccountLoginActivity",
+                    "onEventInfo":"{\"eventName\":\"买啥-开户\",\"eventID\":\"1013\",\"eventType\":\"0\"}"
+                }
+            }
+        ]
+    },
+	"loading_images" :[
+			"http://img.zcool.cn/community/01acc1571de5fb6ac72538120e3836.png",
+			"http://img.zcool.cn/community/01a03b564da3d632f87512f695e7b4.png"
+	],
+	"CommunityActivityJson":{
+            "TITLE":"今日推荐",
+            "showDividerLine":false,
+            "IndicatorColor":"#1191f6,#1191f6",
+            "underlineColor":"#00000000,#00000000",
+            "shouldExpand":false,
+            "listFragment":[
+            {
+               "ID": 30315527,
+               "menuName": "今日推荐",
+               "menuNameTextSize": 15,
+               "orientation": "1",
+               "isShowIcon": false,
+               "onClickInfo": {
+                   "onEventInfo": "{\"eventName\":\"社区-今日赞\",\"eventID\":\"0027\",\"eventType\":\"0\"}"
+               }
+            },
+            {
+               "ID": 30315528,
+               "menuName": "淘股论坛",
+               "menuNameTextSize": 15,
+               "orientation": "1",
+               "isShowIcon": false,
+               "onClickInfo": {
+                   "onEventInfo": "{\"eventName\":\"社区-淘股论坛\",\"eventID\":\"0028\",\"eventType\":\"0\"}"
+               }
+            },
+            {
+               "ID": 30315529,
+               "menuName": "直呼吧",
+               "menuNameTextSize": 15,
+               "orientation": "1",
+               "isShowIcon": false
+            },
+            {
+               "ID": 30315530,
+               "menuName": "港股吧",
+               "menuNameTextSize": 15,
+               "orientation": "1",
+               "isShowIcon": false,
+               "onClickInfo": {
+                   "onEventInfo": "{\"eventName\":\"社区-港股吧\",\"eventID\":\"0029\",\"eventType\":\"0\"}",
+                   "optionJson":"https://image.taoguba.com.cn/img/2017/09/05/ap79ry9aip88.jpg"
+               }
+            },
+            {
+               "ID": 30315531,
+               "menuName": "美股吧",
+               "menuNameTextSize": 15,
+               "orientation": "1",
+               "isShowIcon": false,
+               "onClickInfo": {
+                 "optionJson":"https://image.taoguba.com.cn/img/2017/09/05/hu1f1wztt968.jpg"
+               }
+            },
+            {
+               "ID": 30315532,
+               "menuName": "新三板",
+               "menuNameTextSize": 15,
+               "orientation": "1",
+               "isShowIcon": false,
+               "onClickInfo": {
+                   "onEventInfo": "{\"eventName\":\"社区-新三板\",\"eventID\":\"0030\",\"eventType\":\"0\"}"
+               }
+            }
+         ]
+     }
+}

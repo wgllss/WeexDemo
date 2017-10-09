@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<style>
+    body,img, ul, li, p {
+        padding: 0;
+        margin: 0;
+    }
+    .top{
+        margin: 10px;
+    }
+    .top_text{
+        vertical-align: 23%;
+        font-size: 16px;
+        color: #222222;
+        margin-left: 5px;
+    }
+    .line{
+        width: 100%;
+        height: 1px;
+        background-color: #DDDDDD;
+    }
+    .listview_item{
+        width: 100%;
+        overflow: auto;
+        margin-top: 10px;
+    }
+    .listview_item .item_left{
+        float: left;
+        margin-left: 10px;
+    }
+    .listview_item .item_right{
+        float: left;
+        width: 85%;
+        height: auto;
+    }
+    .lazy{
+        -webkit-border-radius: 50%;
+    }
+    .item_right_up{
+        margin-left: 10px;
+        margin-top: 10px;
+        height: 20px;
+
+    }
+    .user_name{
+        float: left;
+        color: #222222;
+        font-size: 16px;
+        font-weight:bold;
+    }
+    .time{
+        float: right;
+        margin-right: 13px;
+        color: #999999;
+        font-size: 14px;
+    }
+    .item_right_content{
+        margin-right: 10px;
+        max-width: 99%;
+        height: auto;
+        margin-top: 10px;
+        font-size: 15px;
+        line-height: 23px;
+    }
+    .item_right_down{
+        float: right;
+        height: 30px;
+        width: 100%;
+        max-width: 99%;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .item_right_down ul li{
+        list-style-type:none;
+        float: right;
+        margin-right: 10px;
+        width: auto;
+        height: 30px;
+    }
+    .item_right_down ul li a{
+        color: #999999;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .item_right_down ul li a img{
+        margin-top: 0px;
+    }
+    .item_right_down ul li a span{
+        vertical-align: 18%;
+        margin-left: 5px;
+    }
+    .item_right_down ul li a :active{
+        background-color: #DDDDDD;
+    }
+    div[class^="reply_edit_"]{
+        height:90px;
+        width:97%;
+        overflow: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: solid;
+        padding: 0px;
+        border-style: solid;
+        border-width:1px;
+        border-color: #DDDDDD;
+        color: #555555
+    }
+    .txt_area{
+        float: left;
+        height:85px;
+        width:75%;
+    }
+    .div_reply{
+        width: 60px;
+        padding-top: 60px;
+        float: right;
+        border-left: solid ;
+        border-left-style: outset;
+        border-left-color: #dddddd;
+        border-left-width:1px;
+        margin-top: 5px;
+    }
+    .reply_txt{
+        width: 50px;
+        height: 50px;
+        margin-top: 600px;
+        margin-left: 15px;
+        float: none;
+        bottom: 0;
+        font-size: 15px;
+        color: #999999;
+    }
+    .listview{
+        width: 100%;
+    }
+    div[class^="reply_reply_content_"]{
+        width: 97%;
+        float:left;
+        margin-bottom: 10px;
+    }
+    .reply_reply_lab{
+        width: 97%;
+        color:#222222;
+        font-weight:bold;
+        font-size:15px;
+        border-left: solid ;
+        border-left-style: outset;
+        border-left-color: #1191f6;
+        border-left-width:5px;
+        padding-left: 5px;
+    }
+    .reply_reply_content_text{
+        width: 97%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 5px;
+        color: #666666;
+    }
+    .div_reply_reply_down{
+        width: 97%;
+        margin-left: 5px;
+    }
+    .reply_reply_time {
+        font-size: 12px;
+        float: left;
+        color: #999999;
+    }
+    .reply_reply_deletet{
+        float: right;
+        color: #999999;
+        font-size: 14px;
+    }
+
+    .gird_layout {
+        width: 100%;
+        background-color: #1cbb9b;
+    }
+    .box{
+        width: 100%;
+        margin:0 auto;
+    }
+    .box li{
+        display:inline-block;
+        float:left;
+        width:33%;
+        height:100px;
+    }
+    .box li a,.box li a:visited{
+        display:block;
+        text-align: center;
+        padding-top: 3px;
+        position: relative;
+        z-index: 1;
+    }
+    .box li a:hover{
+        border-color: #f00;
+        z-index: 1;
+    }
+    .box li a:active{
+        background-color: #10C593;
+    }
+    .box li a img{
+        width:90px;
+        height:90px;
+    }
+</style>
+<body>
+
+<div >
+    <div class="top" style="display: none">
+        <img id="switch" src="../img/guanbi.png" width="20px" height="20px" onclick="javascript:switchList()"><span class="top_text" onclick="javascript:switchList()"></span>
+    </div>
+    <div id = "listview" class="listview">
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+                    <div class="gird_layout">
+                        <ul class="box">
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/dongmantuphenxiaozhi.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/yejuhuatupian.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/xingkong32H58PICPre.jpg"/></a></li>
+                            <li><a><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2417686723,3264147663&fm=58"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/weijutupianpaishe.jpg"/></a></li>
+                            <li><a><img src="https://img6.bdstatic.com/img/image/smallpic/xiaoqingxintutu.jpg"/></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="item_right_down">
+                        <ul>
+                            <li ><a href="javascript:todelete(0,0)"><img width="0px" height="17px"><span>删除</span></a></li>
+                            <li><a><img width="0px" height="17px"><span>|</span></a></li>
+                            <li><a id = "jinxuan_{{d.list[i].seq}}" data-flag="" href="javascript:toclassic( 55)" ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" width="17px" height="17px"><span>精选留言</span></a></li>
+                            <li ><a href="javascript:showReplylayout({{d.list[i].seq}})"><img src="../img/pinglun.png" width="17px" height="17px"><span>回复</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+
+
+                    <div class="item_right_down">
+                        <ul>
+                            <li ><a href="javascript:todelete(0,0)"><img width="0px" height="17px"><span>删除</span></a></li>
+                            <li><a><img width="0px" height="17px"><span>|</span></a></li>
+                            <li><a id = "jinxuan_{{d.list[i].seq}}" data-flag="" href="javascript:toclassic( 55)" ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" width="17px" height="17px"><span>精选留言</span></a></li>
+                            <li ><a href="javascript:showReplylayout({{d.list[i].seq}})"><img src="../img/pinglun.png" width="17px" height="17px"><span>回复</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+
+
+                    <div class="item_right_down">
+                        <ul>
+                            <li ><a href="javascript:todelete(0,0)"><img width="0px" height="17px"><span>删除</span></a></li>
+                            <li><a><img width="0px" height="17px"><span>|</span></a></li>
+                            <li><a id = "jinxuan_{{d.list[i].seq}}" data-flag="" href="javascript:toclassic( 55)" ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" width="17px" height="17px"><span>精选留言</span></a></li>
+                            <li ><a href="javascript:showReplylayout({{d.list[i].seq}})"><img src="../img/pinglun.png" width="17px" height="17px"><span>回复</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+
+
+                    <div class="item_right_down">
+                        <ul>
+                            <li ><a href="javascript:todelete(0,0)"><img width="0px" height="17px"><span>删除</span></a></li>
+                            <li><a><img width="0px" height="17px"><span>|</span></a></li>
+                            <li><a id = "jinxuan_{{d.list[i].seq}}" data-flag="" href="javascript:toclassic( 55)" ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" width="17px" height="17px"><span>精选留言</span></a></li>
+                            <li ><a href="javascript:showReplylayout({{d.list[i].seq}})"><img src="../img/pinglun.png" width="17px" height="17px"><span>回复</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+
+
+                    <div class="item_right_down">
+                        <ul>
+                            <li ><a href="javascript:todelete(0,0)"><img width="0px" height="17px"><span>删除</span></a></li>
+                            <li><a><img width="0px" height="17px"><span>|</span></a></li>
+                            <li><a id = "jinxuan_{{d.list[i].seq}}" data-flag="" href="javascript:toclassic( 55)" ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" width="17px" height="17px"><span>精选留言</span></a></li>
+                            <li ><a href="javascript:showReplylayout({{d.list[i].seq}})"><img src="../img/pinglun.png" width="17px" height="17px"><span>回复</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+
+
+                    <div class="item_right_down">
+                        <ul>
+                            <li ><a href="javascript:todelete(0,0)"><img width="0px" height="17px"><span>删除</span></a></li>
+                            <li><a><img width="0px" height="17px"><span>|</span></a></li>
+                            <li><a id = "jinxuan_{{d.list[i].seq}}" data-flag="" href="javascript:toclassic( 55)" ><img src="https://img6.bdstatic.com/img/image/smallpic/chongwutupian.jpg" width="17px" height="17px"><span>精选留言</span></a></li>
+                            <li ><a href="javascript:showReplylayout({{d.list[i].seq}})"><img src="../img/pinglun.png" width="17px" height="17px"><span>回复</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="item_1">
+            <div class="line"> </div>
+            <div class="listview_item">
+                <div class="item_left" onclick="javascript:clickPortrait(0)">
+                    <img class="lazy" data-original="" src="https://image.taoguba.com.cn/img/2009/01/14/LO55T25KV5QP.jpg@!80x80" width="40px" height="40px">
+                </div>
+                <div class="item_right">
+                    <div class="item_right_up">
+                        <span class="user_name">老子</span>
+                        <span class="time">2017121</span>
+                    </div>
+                    <div class="item_right_content">
+                        <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：
+                        </p>
+                    </div>
+
+
+
+
+                    <div class="reply_edit_1" style="display: none">
+                        <textarea class="txt_area" id="txt_area_515" placeholder="请输入回复内容"  style= "background:transparent;border-style:none;resize:none;outline:none; "></textarea>
+                        <div class="div_reply" >
+                            <span class="reply_txt" onclick="javascript:commitreply(51)">回复</span>
+                        </div>
+                    </div>
+
+                    <div class="reply_reply_content_{{d.list[i].replyseq}}">
+                        <div class="reply_reply_lab">作者回复</div>
+                        <div class="reply_reply_content_text">
+                            <p>下：9月2日涛金早参 幽兰天下：9月2日涛金早参 幽兰天下：</p>
+                        </div>
+                        <div class="div_reply_reply_down">
+                            <div class="reply_reply_time">19562451</div>
+                            <div class="reply_reply_deletet" onclick="javascript:todelete(1,2,432)">删除</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var webviewAndroidScript =window.injs;
+    var isLoadImage = "Y";//有无图模式 Y有，N无
+    var skinType = "0";//皮肤模式 0：白天，1：夜间
+    var portraitHost = "https://image.taoguba.com.cn/img/";
+    var switchFlag = '0';//0 看全部 1 看精选
+    var flag = "N";
+    //    var urlAll = "comp/dav/pointMessageList";
+    //    var urlBest = "comp/dav/getClassicMessageList";
+    //    var url = urlAll;
+    var bestNum = 0;
+
+    var viewpointSeq = 0;
+    var pageNo = 1;
+    var data = {
+        list: [
+            {
+                messageImages:[]
+            }
+        ]
+    };
+
+    //接收初始值 固定方法
+    function initValue(options) {
+        options= JSON.parse(options);
+        viewpointSeq = options.seq_key;
+        skinType = options.skinType;
+        isLoadImage = options.isLoadImage;
+        webviewAndroidScript.setOnDrawerBackEnabled("1");
+//        viewpointSeq = 172;
+        webviewAndroidScript.setRefreshing();
+    }
+
+    //下拉刷新 固定方法
+    function onPullDown() {
+        pageNo = 1;
+        requestHttp();
+    }
+
+    //上拉加载更多 固定方法
+    function onPullUp() {
+        pageNo++;
+        requestHttp();
+    }
+
+    //点击顶部右边 viwpager 固定方法
+    function onClickTopRight(position) {
+        alert("position--"+position);
+        webviewAndroidScript.setCommunityActivityTopLeftImage("https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1097394617.jpg");
+    }
+
+    //点击顶部左边 viwpager 固定方法
+    function onClickTopLeft(position) {
+        alert("position--"+position);
+        webviewAndroidScript.setCommunityActivitysetRightVisibility("8");
+    }
+
+    //onPageSelected viwpager 固定方法
+    function onPageSelected(position) {
+        webviewAndroidScript.setWebViewPagerActivityTitle("CommunityActivity","-----"+position);
+        alert("position--"+position);
+        if(parseInt(position) > 4){
+            webviewAndroidScript.setCommunityActivitysetRightVisibility("8");
+        }
+    }
+
+    function requestHttp(){
+        //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
+        var paramsJson = "{\"viewpointSeq\":"+viewpointSeq+",\"pageNo\":"+pageNo+",\"flag\":\""+flag+"\"}";
+        webviewAndroidScript.networkRequest("7005",switchFlag,"0","comp/dav/pointMessageList","GET",paramsJson,"1");
+    }
+
+    //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
+    function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
+        if (strMsgWhat == 7005 && strMsgArg1 == switchFlag ) {//获取 获得普通留言列表 or 精选留言
+            json = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
+            json = JSON.parse(json);
+            var resultStatus = webviewAndroidScript.isStatus(json.errorCode, json.status);
+            if (resultStatus == '1') {
+                if (json.dto) {
+                    bestNum = json.dto.totalNum;
+                    $(".top_text").html("仅看精选留言（"+json.dto.totalNum+"）");
+                    $(".top").show();
+                    pageNo = json.dto.pageNo;
+                    if(pageNo == 1 ){
+                        data.list.splice(0, data.list.length);
+                        $(".listview").html("");
+                    }
+                    if (json.dto.list && json.dto.list.length > 0) {
+                        for (var i = 0; i < json.dto.list.length; i++) {
+                            json.dto.list[i].time = formateTiem(json.dto.list[i].createdt);
+                            if( json.dto.list[i].messageImages && json.dto.list[i].messageImages.length >0){
+                                for (var j = 0 ; j <  3 ;j++){
+                                    json.dto.list[i].messageImages.push("img/2017/06/20/okadigqivy5e.jpg");
+                                }
+                            }
+                            if( json.dto.list[i].content &&  json.dto.list[i].content.length >0){
+                                json.dto.list[i].content =webviewAndroidScript.replaceTaogubaFaceHtml(json.dto.list[i].content);
+                            }
+                            if( json.dto.list[i].replyContent &&  json.dto.list[i].replyContent.length >0){
+                                json.dto.list[i].replyContent =webviewAndroidScript.replaceTaogubaFaceHtml(json.dto.list[i].replyContent);
+                            }
+                            if (json.dto.list[i].replyTime) {
+                                json.dto.list[i].replyTime = formateTiem(json.dto.list[i].replyTime);
+                            }
+                            json.dto.list[i].portrait = portraitHost + json.dto.list[i].portrait;
+                            if ("Y" == json.dto.list[i].bestFlag) {
+                                json.dto.list[i].bestimageurl = "../images/jingxuan_yellow.png";
+                            } else {
+                                json.dto.list[i].bestimageurl = "../images/jingxuan_grey.png";
+                            }
+                            if (skinType == '0') {
+                                json.dto.list[i].defaultPortrait = '../img/user_icon_60_d.png';
+                            } else {
+                                json.dto.list[i].defaultPortrait = '../img/user_icon_60_n.png';
+                            }
+                            data.list.push(json.dto.list[i]);
+                        }
+                        insertHtmlData("demo", "listview");
+                        $(" div[class^='reply_edit_']").click(function (event) {//回复框
+                            try {
+                                var y = ( window.event.pageY - document.body.scrollTop);
+                                y = y < 150 ? 0 : y - 150;
+                                y += document.body.scrollTop;
+                                $("body,html").animate({scrollTop: y}, 50);
+                            } catch (e) {
+
+                            }
+                        });
+                    }
+                }
+            }else {
+                webviewAndroidScript.toast(json.errorMessage);
+            }
+        } else if (strMsgWhat == 7006) {//回复
+            json = JSON.parse(json);
+            var resultStatus = webviewAndroidScript.isStatus(json.errorCode, json.status);
+            if (resultStatus == '1') {
+                $("div[class^='reply_edit_"+strMsgArg1+"'").hide();
+                webviewAndroidScript.setRefreshing();
+                webviewAndroidScript.toast("回复成功");
+            }else {
+                webviewAndroidScript.toast(json.errorMessage);
+            }
+        } else if (strMsgWhat == 7007) {// 更新精选状态
+            json = JSON.parse(json);
+            var resultStatus = webviewAndroidScript.isStatus(json.errorCode, json.status);
+            if (resultStatus == '1') {
+                if ('1' == strMsgArg2) {
+                    $("#jinxuan_"+strMsgArg1 +" img").attr("src","../images/jingxuan_yellow.png");
+                    $("#jinxuan_"+strMsgArg1).attr("data-flag","Y");
+                    bestNum++;
+                    $(".top_text").html("仅看精选留言（"+bestNum +"）");
+                } else {
+                    if('1' == switchFlag ){
+                        $("#item_"+strMsgArg1).remove();
+                    }else{
+                        $("#jinxuan_"+strMsgArg1 +" img").attr("src","../images/jingxuan_grey.png");
+                        $("#jinxuan_"+strMsgArg1).attr("data-flag","N");
+                    }
+                    bestNum--;
+                    $(".top_text").html("仅看精选留言（"+bestNum +"）");
+                }
+            }else {
+                webviewAndroidScript.toast(json.errorMessage);
+            }
+        } else if (strMsgWhat == 7008) {//删除留言
+            json = JSON.parse(json);
+            var resultStatus = webviewAndroidScript.isStatus(json.errorCode, json.status);
+            if (resultStatus == '1') {
+                $("#item_"+strMsgArg1).remove();
+            }else {
+                webviewAndroidScript.toast(json.errorMessage);
+            }
+        } else if (strMsgWhat == 7009) {//删除留言回复
+            json = JSON.parse(json);
+            var resultStatus = webviewAndroidScript.isStatus(json.errorCode, json.status);
+            if (resultStatus == '1') {
+                $("div[class^='reply_reply_content_"+strMsgArg2+"'").remove();
+                $("#reply_"+strMsgArg1).show();
+            }else {
+                webviewAndroidScript.toast(json.errorMessage);
+            }
+        }
+    }
+
+    //显示回复布局
+    function  showReplylayout(i) {
+        $(".reply_edit_"+i).slideToggle();
+    }
+
+    //点击头像
+    function clickPortrait(userID){
+        var data= {};
+        data.action="closeWebViewWithResult",
+        data.body = {
+            "result":"我是回传的数据00000"
+        }
+        postMessage(JSON.stringify(data))
+
+//        window.webullBroker.closeWebviewWithResult("{\"data\":\"我是回传数据data\"}");
+//        webviewAndroidScript.setWebViewPagerActivityCurrentItem("CommunityActivity","0","0");
+//        webviewAndroidScript.setWebViewPagerActivityNewInfoNum("CommunityActivity","0","0","10");
+//        webviewAndroidScript.callWebViewPagerActivityFragment("0","4","javascript:switchList()");
+//        webviewAndroidScript.callDynamicWebViewctivity("0","javascript:todelete('1','1','1')");
+//        webviewAndroidScript.setWeexTabHostWithWebViewNewInfoNum("3","30");
+//        var optionJson = "[{\"intentKey\":\"USER_ID_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"" + userID + "\"}]";
+//        webviewAndroidScript.startOtherNativeActivity2('com.taoguba.app.activity.UserCenterActivity', optionJson);
+    }
+
+
+
+    //h5向调用原生
+    //data为json ，String类型
+    // tgbOpenID: 为开户淘股吧的开户用户ID 开户前会传过来，此时 tgbOpenID fmCode 福米那边应存入数据库 保存一对,并开一接口，淘股吧每天同步该数据
+    // fmCode: 福米开户后的唯一识别Code
+    // title: 打开wevview头部标题，html页面无需写标题, 若一定要用html标题 title传""，同时标题栏返回也需要在html页面处理 反之不需要处理
+    // url: 打开wevview加载url
+    // 登陆回调 和 开户回调 data = {\"action\":\"bindCallBack\",\"body\":{\"fmCode\":\"wgllss@qq.com\"}}
+    // 打开webviewjson格式事例 data={\"action\":\"openWebView\",\"body\":{\"title\":\"帮助页1\",\"url\":\"https://www.taoguba.com.cn\"}}
+    // 关闭webviewjson格式事例 data={\"action\":\"closeWebView\",\"body\":{}}
+    function postMessage(data) {
+        var u = navigator.userAgent;
+        //判断是否为移动端
+        if(!!u.match(/AppleWebKit.*Mobile.*/) ){
+            if( !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) ){
+                //判断是否为IOS移动端
+                window.webkit.messageHandlers.webullBroker.postMessage(data);
+            }else if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
+                //判断是否为安卓移动端
+                window.webullBroker.postMessage(data);
+            }
+        }
+    }
+
+    //大V留言回复
+    function  commitreply(messageSeq) {
+        var content =document.getElementById("txt_area_"+messageSeq).value;
+        var paramsJson = "{\"messageSeq\":"+messageSeq+",\"content\":"+content+"}";
+        webviewAndroidScript.networkRequest("7006",""+messageSeq,"0","comp/dav/insertMessageReply","POST",paramsJson,"0");
+    }
+    //精选留言
+    function toclassic(seq){
+        var bestFlag = $("#jinxuan_"+seq).attr("data-flag");
+        var flag ="";
+        var which1 = seq;
+        var which2 ="";
+        if('Y' == bestFlag){
+            flag ="N";
+            which2 = '0';
+        }else{
+            flag ="Y";
+            which2 = '1';
+        }
+        var paramsJson = "{\"seq\":"+seq+",\"flag\":"+flag+",\"viewPointSeq\":\""+viewpointSeq+"\"}";
+        webviewAndroidScript.networkRequest("7007",which1,which2,"comp/dav/updateBestFlag","GET",paramsJson,"0");
+    }
+
+    //删除留言 删除留言回复
+    function todelete(seq,type,replyseq) {
+
+        if('1' == type){//删除留言
+            var callbackMethodOkJson ="{\"seq\":\""+seq+"\",\"type\":\"1\"}";
+            var callbackMethodCancleJson = "";
+            webviewAndroidScript.confirm("", "您确定删除此条留言吗?", '确定','取消', "callbackMethodOk", "callbackMethodCancle",callbackMethodOkJson,"");
+        }else   if('2' == type){//删除留言回复
+            var callbackMethodOkJson ="{\"seq\":\""+seq+"\",\"type\":\"2\",\"replyseq\":"+replyseq+"}";
+            var callbackMethodCancleJson = "";
+            webviewAndroidScript.confirm("", "您确定删除此条回复吗?", '确定','取消', "callbackMethodOk", "callbackMethodCancle",callbackMethodOkJson,"");
+        }
+    }
+
+    //confirm ok回调
+    function callbackMethodOk(callbackMethodOkJson){
+
+        callbackMethodOkJson = JSON.parse(callbackMethodOkJson);
+        if('1' == callbackMethodOkJson.type){//删除留言
+            var seq = callbackMethodOkJson.seq+'';
+            var paramsJson = "{\"seq\":"+seq+"}";
+            webviewAndroidScript.networkRequest("7008",seq,"0","comp/dav/deleteDavMessage","POST",paramsJson,"0");
+        }else  if('2' == callbackMethodOkJson.type) {//删除留言回复
+            var seq = callbackMethodOkJson.seq+'';
+            var replyseq = callbackMethodOkJson.replyseq+'';
+            var paramsJson = "{\"seq\":"+replyseq+"}";
+            webviewAndroidScript.networkRequest("7009",seq,replyseq,"comp/dav/deleteDavReplyMessage","GET",paramsJson,"0");
+        }
+
+    }
+
+    //confirm cancle回调
+    function callbackMethodCancle(callbackMethodCancleJson){
+
+    }
+
+    //切换 看全部 还是 看精选
+    function switchList() {
+        if('0'  == switchFlag) {
+            switchFlag = '1';
+            flag = "C"
+            $("#switch").attr("src","../images/kaifang.png");
+        }else  if('1'  == switchFlag){
+            switchFlag = '0';
+            flag = "N"
+            $("#switch").attr("src","../images/guanbi.png");
+        }
+        webviewAndroidScript.setRefreshing();
+    }
+
+    //插入数据到 模板中
+    function insertHtmlData(htmlTemplateID,divID){
+        var gettpl = document.getElementById(htmlTemplateID).innerHTML;
+        laytpl(gettpl).render(data, function(html){
+            $("#"+divID).append( html);
+            loadImage();
+            changeSkin(skinType);
+        });
+    }
+
+    //得到图片地址
+    function getImgUrl(path){
+        return "https://image.taoguba.com.cn/"+path;
+    }
+
+    //加载图片
+    function loadImage() {
+        if (isLoadImage == 'Y') {//有图模式
+            setTimeout(function () {
+                $("img.lazy").lazyload();
+                $(".gird_box li a img").lazyload();
+            }, 300);
+        } else {
+            $(".zheng_wen img.lazy").hide();
+            $(".reply_content img.lazy").hide();
+        }
+    }
+
+    //格式花时间
+    function formateTiem(time) {
+        if (!time) {
+            return '';
+        }
+        var fmt = "yy-MM-dd hh:mm";
+        var date = new Date(time);
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        var o = {
+            'M+': date.getMonth() + 1,
+            'd+': date.getDate(),
+            'h+': date.getHours(),
+            'm+': date.getMinutes(),
+            's+': date.getSeconds()
+        };
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                var str = o[k] + '';
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : ('00' + str).substr(str.length));
+            }
+        }
+        return fmt;
+    }
+
+    //设置文字大小 固定方法
+    function setTextSize(size) {
+        if (size == 'LB') {//字体巨无霸
+            $("P").css("font-size", "29px");
+            $(".item_right_content p").css("line-height","52px");
+        } else if (size == 'B') {//字体巨大
+            $("P").css("font-size", "26px");
+            $(".item_right_content p").css("line-height","45px");
+        } else if (size == 'G') {//字体超大
+            $("P").css("font-size", "23px");
+            $(".item_right_content p").css("line-height","23px");
+        } else if (size == 'L') {//字体大
+            $(".zhai_yao P").css("font-size", "20px");
+            $(".zheng_wen p").css("font-size", "20px");
+            $(".reply_content p").css("font-size", "20px");
+            $(".reply_reply_content p").css("font-size", "20px");
+        } else if (size == 'M') {//字体中
+            $(" P").css("font-size", "16px");
+            $(".item_right_content p").css("line-height","23px");
+        } else if (size == 'S') {//字体小
+            $("P").css("font-size", "14px");
+            $(".item_right_content p").css("line-height","23px");
+        }
+    }
+
+    //改变皮肤 固定方法
+    function changeSkin(skinType) {
+        if ('1' == skinType) {//夜间模式
+            $(".top_text").css("color","#999999");
+            $(".user_name").css("color","#999999");
+            $("p").css("color", "#999999");//线条颜色
+            $(".line").css("background", "#0e1929");//线条颜色
+            $("div[class^='reply_edit_']").css("border-color","#0e1929");
+            $("div[class^='reply_edit_']").css("color","#999999");
+            $(".div_reply").css("border-left-color","#0e1929");
+            $(".reply_reply_lab").css("border-left-color","#005e91");
+            $(".reply_reply_lab").css("color","#222222");
+        }else{
+            $(".top_text").css("color","#222222");
+            $(".user_name").css("color","#222222");
+            $(".line").css("background", "#DDDDDD");//线条颜色
+            $("p").css("color", "#222222");//线条颜色
+            $("div[class^='reply_edit_']").css("border-color","#DDDDDD");
+            $("div[class^='reply_edit_'']").css("color","#222222");
+            $(".div_reply").css("border-left-color","#DDDDDD");
+            $(".reply_reply_lab").css("border-left-color","#1191f6");
+            $(".reply_reply_lab").css("color","#999999");
+        }
+    }
+</script>
+</body>
+</html>
