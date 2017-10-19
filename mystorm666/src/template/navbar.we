@@ -1,0 +1,206 @@
+<template>
+    <div>
+        <div if="{{showStatusBar}}" class="status_bar_ios status_bar-{{type}}"></div>
+        <div class="nav_bar nav_bar-{{type}}">
+            <div class="nav_back nav_back-{{type}}" onclick="nativeback">
+                <image class="img" src="{{getImgUrl('./images/leftw_')}}" if="{{shownleft}}"></image>
+            </div>
+            <div class="nav_title">
+                <text class="nav_text nav_text-{{type}} nav_text_top-{{nav_text_top}}">{{title}}</text>
+            </div>
+            <div class="nav_right_menu">
+                <div class="nav_bar nav_back-{{type}}" if="{{shown}}" onclick="onright">
+                    <image class="img_menu" src="{{getImgUrl('./images/fa_tie_')}}"></image>
+                </div>
+            </div>
+        </div>
+        <div class="nav_line  nav_line-{{type}}"></div>
+    </div>
+</template>
+
+<script>
+    require('weex-components');
+    var atar = require('../atar');
+    var navigator = require('@weex-module/navigator')
+    var date = require('../common/date');
+    var modal = require('@weex-module/modal');
+    var event = require('@weex-module/event');
+    var stream = require('@weex-module/stream');
+    var storage = require('@weex-module/storage');
+    var weexEventModule = require('@weex-module/weexEventModule');
+
+    module.exports = {
+        data: {
+            title: '  ',
+            type: 0,
+            shown: false,
+            showStatusBar: 0,
+            nav_text_top: 0,
+            shownleft: false
+
+        },
+        created: function () {
+            this.platform = this.$getConfig().env.platform;
+            if (this.platform == 'iOS') {
+                this.showStatusBar = 1;
+            }
+            if (typeof window === 'object') {
+                this.nav_text_top = 1;
+            } else {
+                this.nav_text_top = 0;
+            }
+        },
+        ready: function () {
+
+
+        },
+
+        methods: {
+            nativeback: function (e) {
+                var params = {
+                    'animated': 'true'
+                };
+                navigator.pop(params, event => {
+
+                });
+            },
+            onright: function (e) {
+                this._parent.onClickRight();
+            },
+
+
+
+            getImgUrl: function (url) {
+                url = url + this.type + '.png';
+                return atar.getImageUrl(url);
+            },
+
+            setLeftImage: function (res) {
+                this.leftImage = res;
+//                console.log('navbar == res'+res);
+            },
+
+            setRightImage: function (res) {
+                this.rightImage = res;
+//                    console.log('navbar == res'+res);
+            }
+
+        }
+    }
+</script>
+
+<style>
+    .nav_bar {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        height: 45wx;
+    }
+
+    .nav_bar-0 {
+        background-color: #1191f6;
+    }
+
+    .nav_bar-1 {
+        background-color: #192c46;
+    }
+
+    .nav_text {
+        font-size: 20wx;;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .nav_text_top-0 {
+        margin-top: 30px;
+    }
+
+    .nav_text_top-1 {
+        margin-top: 1px;
+    }
+
+    .nav_text-0 {
+        color: #FFFFFF;
+    }
+
+    .nav_text-1 {
+        color: #55aad8;
+    }
+
+    .nav_title {
+        flex: 1;
+        margin-left: 10px;
+        margin-right: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav_back {
+        justify-content: center;
+        align-items: center;
+        width: 45wx;
+        height: 45wx;
+    }
+
+    .nav_right_menu {
+        width: 45wx;
+        height: 45wx;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img {
+        width: 45wx;
+        height: 45wx;
+        padding: 11.5wx;
+    }
+
+    .nav_back-0:active {
+        background-color: #0E7BF6;
+    }
+
+    .nav_back-1:active {
+        background-color: #132237
+    }
+
+    .nav_right_menu-0 {
+        background-color: #0E7BF6;
+    }
+
+    .nav_right_menu-1 {
+        background-color: #132237;
+    }
+
+    .img_menu {
+        width: 45wx;
+        height: 45wx;
+        padding: 11.5wx;
+    }
+
+    .nav_line {
+        height: 1px;
+
+    }
+
+    .nav_line-0 {
+        background-color: #D8D8D8;
+    }
+
+    .nav_line-1 {
+        background-color: #192c46;
+    }
+
+    .status_bar_ios {
+        height: 20wx;
+    }
+
+    .status_bar-0 {
+        background-color: #1191f6;
+    }
+
+    .status_bar-1 {
+        background-color: #192c46;
+    }
+</style>

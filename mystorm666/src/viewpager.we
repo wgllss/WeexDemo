@@ -1,0 +1,213 @@
+<template>
+    <div class="content content-{{skinType}}">
+        <navbar if="{{navBar_display}}" title="{{title}}" type="{{skinType}}" shownleft="true" shown="false"></navbar>
+        <div class="tabclass">
+            <div class="top_tab_item" repeat="{{item in buttomData}}" onclick="{{setIndex(item.index)}}">
+                <text class="item_text {{item.itemNameColor}}">{{item.itemName}}</text>
+            </div>
+        </div>
+        <div class="tablineclass">
+            <div class="top_item_line" repeat="{{item in buttomData}}">
+                <div class="lineClass {{item.itemLineColor}}">
+                </div>
+            </div>
+        </div>
+        <slider class="slider" append="tree" interval="1000" needloop="false" auto-play="false" onchange="onchange"
+                index="{{index}}" offScreenPageLimit="3"   style="height:{{screenHeight}}wx">
+            <test id="point_sub0" ></test>
+            <list id="point_sub1" ></list>
+            <test id="point_sub2" ></test>
+        </slider>
+    </div>
+</template>
+
+<script>
+    require('./template/navbar.we')
+    require('./test.we')
+    var weexEventModule = require('@weex-module/weexEventModule');
+
+
+    module.exports = {
+        data: {
+            platform: 'unknown',
+            skinType :0,
+            title:"fdgd",
+            screenHeight:0,
+            isFirst: 0,
+            index:0,
+            buttomData: [
+                {
+                    index: 0,
+                    itemName: 'tab1',
+                    itemNameColor: "item_text-select-0",
+                    itemLineColor:"select_line_color-0"
+                },
+                {
+                    index: 1,
+                    itemName: 'tab2',
+                    itemNameColor: "tab_unselect_txt_color-0",
+                    itemLineColor:"unselect_line_color-0"
+                },
+                {
+                    index: 2,
+                    itemName: 'tab3',
+                    itemNameColor: "tab_unselect_txt_color-0",
+                    itemLineColor:"unselect_line_color-0"
+                }
+            ]
+
+        },
+        methods: {
+            setIndex :function (index) {
+                this.index = index;
+
+                for (var i = 0; i < this.buttomData.length; i++) {
+                    var tabItem = this.buttomData[i];
+                    if (i == index) {
+                       // tabItem.imgUrl = tabItem.imgUrlSelect;
+                        tabItem.itemNameColor = "item_text-select-" + this.skinType;
+                        tabItem.itemLineColor= "select_line_color-" + this.skinType;
+//                        if (this.$vm('point_sub' + i).isFirst == 1) {
+//                            this.$vm('point_sub' + i).autoRefresh();
+//                        }
+                    } else {
+//                        tabItem.imgUrl = tabItem.imgUrlUnSelect;
+                        tabItem.itemNameColor = "item_text-" + this.skinType;
+                        tabItem.itemLineColor= "unselect_line_color-" + this.skinType;
+                    }
+                }
+            },
+            onchange:function(params){
+                var index = params.index;
+                this.setIndex(index);
+                if ('android' == this.platform) {
+                    weexEventModule.setOnDrawerBackEnabled('' + index);
+                }
+            }
+        },
+        created:function(){
+            this.platform = this.$getConfig().env.platform;
+            this.skinType = this.$getConfig().skinType;
+        },
+        ready:function(){
+            this.index = 0;
+            this.setIndex(this.index);
+            this.isFirst = 0;
+        }
+    };
+</script>
+
+<style>
+    .slider {
+        flex-direction: row;
+        width: 750;
+        top: 0;
+        left: 0;
+        /*right: 0;*/
+        bottom: 0;
+        margin-bottom: 5wx;
+    }
+
+    .content {
+        flex-direction: column;
+        width: 750;
+    }
+
+    .tabclass {
+        width: 750;
+        height: 35wx;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+    }
+
+    .content-0 {
+        background-color: #F6F6F6;
+    }
+
+    .content-1 {
+        background-color: #15253d;
+    }
+
+    .tabclass-0 {
+        background-color: #F8F8F8;
+    }
+
+    .tabclass-1 {
+        background-color: #132237;
+    }
+
+    .top_tab_item {
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img {
+        width: 20wx;
+        height: 20wx;
+    }
+
+
+    .item_text {
+        font-size: 15wx;
+        color: #666666;
+        flex: 1;
+        text-align: center;
+        /*background-color: #00ff00;*/
+    }
+
+    .tablineclass {
+        width: 750;
+        height: 2wx;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .top_item_line {
+        flex: 1;
+        height: 1wx;
+    }
+
+    .item_text-0 {
+        color: #555555;
+    }
+
+    .item_text-1 {
+        color: #999999;
+    }
+
+    .item_text-select-0 {
+        color: #1191f6;
+    }
+
+    .item_text-select-1 {
+        color: #005e91;
+    }
+
+    .lineClass {
+        flex: 1;
+        height: 2wx;
+    }
+
+    .select_line_color-0 {
+        background-color: #1191f6;
+    }
+
+    .select_line_color-1 {
+        background-color: #005e91;
+    }
+
+    .unselect_line_color-0 {
+        background-color: #DDDDDD;
+    }
+
+    .unselect_line_color-1 {
+        background-color: #0e1929;
+    }
+</style>

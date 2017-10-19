@@ -2,3 +2,7 @@
 #dist
 #dav/build/
 #index.html
+
+
+
+替换  webpack.mystorm666.config.js  ， package.json ， start 中的 mystorm666

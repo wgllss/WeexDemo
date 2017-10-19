@@ -1,0 +1,25 @@
+<template>
+  <scroller>
+    <div id="r">
+      <text>{{x}} http://localhost:8080/index.html?page=./mystorm/build/src/test.js</text>
+      <div style="height: 2000; background-color: #ff0000;"></div>
+      <text onclick="foo"> </text>
+    </div>
+  </scroller>
+</template>
+
+<script>
+  var dom = require('@weex-module/dom')
+  module.exports = {
+    data: function () {
+      return {
+        x: 1
+      }
+    },
+    methods: {
+      foo: function (e) {
+        dom.scrollToElement(this.$el('r'), { offset: 0 })
+      }
+    }
+  }
+</script>

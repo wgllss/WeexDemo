@@ -1,0 +1,51 @@
+<!-- Inspired by bootstrap http://getbootstrap.com/ -->
+<template>
+    <div class="panel-{{type}}">
+        <text class="panel-header panel-header-{{type}}"
+              style="padding-top:{{paddingHead}};padding-bottom:{{paddingHead}};padding-left:{{paddingHead*1.5}};padding-right:{{paddingHead*1.5}}">
+            {{title}}
+        </text>
+        <div class="panel-{{type}}">
+            <content></content>
+        </div>
+    </div>
+</template>
+
+<script>
+    module.exports = {
+        data: {
+            type: 0,
+            title: '',
+            paddingBody: 20,
+            paddingHead: 20,
+            dataClass: '', // FIXME transfer class
+            border: 0
+        },
+        ready: function () {
+        }
+    }
+</script>
+
+<style>
+    .panel-0 {
+        background-color: #f5f5f5;
+    }
+
+    .panel-1 {
+        background-color: #15253d;
+    }
+
+    .panel-header {
+        font-size: 15wx;
+    }
+
+    .panel-header-0 {
+        background-color: #eeeeee;
+        color: #ff00000；
+    }
+
+    .panel-header-1 {
+        background-color: #132237;
+        color: #666666;
+    }
+</style>
