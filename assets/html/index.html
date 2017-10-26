@@ -19,6 +19,8 @@
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(10)"> viewpager_webview_buttom  </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(11)"> viewpager_webview_top </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(12)"> topicHtml </button><br/>
+<button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(13)"> layui </button><br/>
+<button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(14)"> 网易新闻 </button><br/>
 </body>
 </html>
 <script>
@@ -346,6 +348,12 @@
             webviewAndroidScript.startOtherNativeActivity('com.atar.activitys.htmls.WebViewPagerActivity',JSON.stringify(option_json) );
         } else if(ID == 12) {
             optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"0\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/topic3.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"jq-mobile\"}]';
+            webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
+        } else if(ID == 13) {
+            optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"0\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/layui.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"jq-mobile\"}]';
+            webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
+        }else if(ID == 14) {
+            optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"0\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/new163.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"网易新闻\"}]';
             webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
         }
     }
