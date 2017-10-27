@@ -265,7 +265,7 @@
                 json = JSON.parse(json);
 
                 if(json && json.focus && json.focus.length >0){
-
+                    data.list.splice(0, data.list.length);
                     for (var i = 0 ;  i < json.focus.length ; i++){
                         if(json.focus[i].picInfo && json.focus[i].picInfo.length > 0){
                             var item = {};
