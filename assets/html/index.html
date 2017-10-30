@@ -25,6 +25,7 @@
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(16)"> tab_viewpager </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(17)"> swipe_tab </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(18)"> tab_viewpager refresh </button><br/>
+<button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(19)"> drawerlayout </button><br/>
 </body>
 </html>
 <script>
@@ -371,6 +372,11 @@
         }else if(ID == 18) {
             optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"3\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/pulltorefresh_tab.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"\"}]';
             webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
+        }else if(ID == 19) {
+            optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"3\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/cehua.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"\"}]';
+            webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
         }
+
+
     }
 </script>

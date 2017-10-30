@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, user-scalable=no" name="viewport">
+	<title>原生html5实现移动端网页侧滑栏滑动特效代码效果</title>
+	<link rel="stylesheet" href="../css/reset_slide.css">
+	<link rel="stylesheet" href="../css/lanren.css">
+</head>
+<body>
+	<!-- 代码部分begin -->
+	<header class="header">
+		<span class="btn-slide-bar"></span>
+		<h1 class="page-title">header</h1>
+	</header>
+	<section class="wraper-page">
+		<p>同志们，请使用你的移动网页浏览本页面</p>
+		<p>点击左上角按钮试试效果</p>
+	</section>
+	<footer class="footer">footer</footer>
+	<section class="slide-bar">
+		<ul>
+			<li>首页</li>
+			<li>菜单导航</li>
+			<li>jQuery特效</li>
+			<li>CSS3特效</li>
+			<li>tab标签</li>
+		</ul>
+	</section>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(){
+			(function(){
+				var _btn  = document.querySelector(".btn-slide-bar"),
+					_body = document.querySelector("body");
+					_btn.onclick = function(){
+						_body.classList.toggle("active");
+					}
+			})(window)
+		},false);
+	</script>
+</body>
+</html>
+<script>
+    var webviewAndroidScript =window.injs;
+
+    function initValue() {
+        webviewAndroidScript.setOnDrawerBackEnabled("1");
+    }
+
+    //下拉刷新
+    function onPullDown() {
+        webviewAndroidScript.onStopRefresh();
+    }
+
+    //上拉加载更多
+    function onPullUp() {
+        webviewAndroidScript.onStopRefresh();
+    }
+</script>
