@@ -10,7 +10,7 @@
     <title></title>
     <script src="../js/jquery-1.9.1.js"></script>
     <script src="../js/swiper.min.js"></script>
-    <script src="../js/idangerous.swiper.min.js"></script>
+    <!--<script src="../js/idangerous.swiper.min.js"></script>-->
     <link rel='stylesheet' href='../css/swiper.min.css'>
 
     <style type="text/css">
@@ -168,7 +168,67 @@
                     </div>
                 </div>
             </div>
-
+            <div class="swiper-slide">
+                <div  class="wrapper" id="wrapper">
+                    <div class="nofavor">
+                        <img src="../images/panda.png">
+                    </div>
+                </div>
+            </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div><div class="swiper-slide">
+            <div  class="wrapper" id="wrapper">
+                <div class="nofavor">
+                    <img src="../images/panda.png">
+                </div>
+            </div>
+        </div>
         </div>
         </div>
     </div>
@@ -183,82 +243,32 @@
 <script type="text/javascript">
     var webviewAndroidScript = window.injs;
 
-    $(function () {
-
-        //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
-        $('.horizontall_wrapper').navbarscroll();
-
-
-
-//        //demo示例五 通过id调取
-//        $('#demo05').navbarscroll({
-//            defaultSelect: 6,
-//            endClickScroll: function (obj) {
-//                console.log(obj.text())
-//            }
-//        });
-//
-//        //demo示例六 通过id调取
-//        $('#demo06').navbarscroll({
-//            defaultSelect: 3,
-//            scrollerWidth: 6,
-//            fingerClick: 1,
-//            endClickScroll: function (obj) {
-//                console.log(obj.text())
-//            }
-//        });
-    });
-
     var mySwiper = new Swiper('.swiper-container', {
         autoHeight: true,
         onSlideChangeStart: function () {
             $(".tabs .default").removeClass('default');
             $(".tabs li").eq(mySwiper.activeIndex).addClass('default');
+            $('#wrapper03').navbarscroll({
+                defaultSelect: mySwiper.activeIndex
+            });
 //            webviewAndroidScript.setOnDrawerBackEnabled(""+mySwiper.activeIndex);
         }
     });
 
-    refresher.init({
-        id: "wrapper",
-        pullDownAction: Refresh,
-        pullUpAction: Load
-    });
-    function Refresh() {
-        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-            var el, li, i;
-            el = document.querySelector("#wrapper ul");
-            //这里写你的刷新代码
-            document.getElementById("wrapper").querySelector(".pullDownIcon").style.display = "none";
-            document.getElementById("wrapper").querySelector(".pullDownLabel").innerHTML = "<img src='../css/ok.png'/>刷新成功";
-            setTimeout(function () {
-                wrapper.refresh();
-                document.getElementById("wrapper").querySelector(".pullDownLabel").innerHTML = "";
-            }, 1000);//模拟qq下拉刷新显示成功效果
-            /****remember to refresh after  action completed！ ---yourId.refresh(); ----| ****/
-        }, 1000);
-    }
-    function Load() {
-        setTimeout(function () {// <-- Simulate network congestion, remove setTimeout from production!
-            var el, li, i;
-            el = document.querySelector("#wrapper ul");
-            for (i = 0; i < 2; i++) {
-                li = document.createElement('li');
-                li.innerHTML = "<img src='../img/game8.png'><div class='game-info'><h1>华仔超神战记</h1><p>9万次下载     89.18M</p><p>秒杀虚拟摇杆，砸烂手机键盘</p></div><button>下载</button>"
-                el.appendChild(li, el.childNodes[0]);
-            }
-            wrapper.refresh();
-            /****remember to refresh after action completed！！！   ---id.refresh(); --- ****/
-        }, 2000);
-    }
 
-    function clickdf() {
-        alert("dfdfd");
-        var index = 8;
-        $('#wrapper03').navbarscroll({
-            defaultSelect: index
-        });
-    }
-    
+    $('.horizontall_wrapper').navbarscroll({
+        endClickScroll: function (obj) {
+            var index = $(obj).index();//这就是当前选中li的ul序号
+            try {
+                if(mySwiper){
+                    mySwiper.slideTo(index, 300, false); //切换到第一个slide，速度为1秒
+                }
+            }catch (e){
+                alert(e.toString());
+            }
+        }
+    });
+
     function initValue() {
         webviewAndroidScript.setOnDrawerBackEnabled("1");
     }

@@ -23,6 +23,8 @@
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(14)"> 网易新闻 </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(15)"> refresh3 </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(16)"> tab_viewpager </button><br/>
+<button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(17)"> swipe_tab </button><br/>
+<button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(18)"> tab_viewpager refresh </button><br/>
 </body>
 </html>
 <script>
@@ -362,6 +364,12 @@
             webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
         }else if(ID == 16) {
             optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"3\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/tab_viewpager.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"tab_viewpager\"}]';
+            webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
+        }else if(ID == 17) {
+            optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"3\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/swipe_tab.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"tab_viewpager\"}]';
+            webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
+        }else if(ID == 18) {
+            optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"3\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/pulltorefresh_tab.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"\"}]';
             webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
         }
     }
