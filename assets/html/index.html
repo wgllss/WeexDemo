@@ -26,6 +26,7 @@
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(17)"> swipe_tab </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(18)"> tab_viewpager refresh </button><br/>
 <button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(19)"> drawerlayout </button><br/>
+<button style="height: 40px;margin-top: 10px;"  onclick="javascript:oncliceButton(20)"> 网易新闻 viewpager_fragment </button><br/>
 </body>
 </html>
 <script>
@@ -375,6 +376,120 @@
         }else if(ID == 19) {
             optionJson = '[{\"intentKey\":\"PULL_TO_REFRESH_MODE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"3\"},{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"assets/html/cehua.html\"},{\"intentKey\":\"TITLE_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"\"}]';
             webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', optionJson);
+        }else if(ID == 20) {
+            var VIEWPAGER_OPTION_JSON_KEY = {
+                "TITLE": "网易新闻",
+                "showDividerLine": false,
+                "IndicatorColor": "#1191f6,#1191f6",
+                "underlineColor": "#00000000,#00000000",
+                "shouldExpand":false,
+                "position": 0,
+                "listFragment": [
+                    {
+                        "menuName": "推荐",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "新闻",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "娱乐",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "体育",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "图片",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "财经",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    }, {
+                        "menuName": "汽车",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "军事",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "视频",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    },
+                    {
+                        "menuName": "段子",
+                        "menuNameTextSize": 14,
+                        "orientation": "1",
+                        "onClickInfo": {
+                            "className": "assets/html/new163.html",
+                            "PULL_TO_REFRESH_MODE": "0",
+                            "optionJson": ""
+                        }
+                    }
+                ]
+            }
+            var option_json ={
+                "VIEWPAGER_OPTION_JSON_KEY":JSON.stringify(VIEWPAGER_OPTION_JSON_KEY)
+            }
+            webviewAndroidScript.startOtherNativeActivity('com.atar.activitys.htmls.WebViewPagerActivity',JSON.stringify(option_json) );
         }
 
 
