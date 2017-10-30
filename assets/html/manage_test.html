@@ -625,7 +625,7 @@
     function requestHttp(){
         //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
         var paramsJson = "{\"viewpointSeq\":"+viewpointSeq+",\"pageNo\":"+pageNo+",\"flag\":\""+flag+"\"}";
-        webviewAndroidScript.networkRequest("7005",switchFlag,"0","comp/dav/pointMessageList","GET",paramsJson,"1");
+        webviewAndroidScript.networkRequest("7005",switchFlag,"0","","GET",paramsJson,"1");
     }
 
     //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
@@ -755,28 +755,8 @@
             "result":"我是回传的数据00000"
         }
         postMessage(JSON.stringify(data))
-
-//        window.webullBroker.closeWebviewWithResult("{\"data\":\"我是回传数据data\"}");
-//        webviewAndroidScript.setWebViewPagerActivityCurrentItem("CommunityActivity","0","0");
-//        webviewAndroidScript.setWebViewPagerActivityNewInfoNum("CommunityActivity","0","0","10");
-//        webviewAndroidScript.callWebViewPagerActivityFragment("0","4","javascript:switchList()");
-//        webviewAndroidScript.callDynamicWebViewctivity("0","javascript:todelete('1','1','1')");
-//        webviewAndroidScript.setWeexTabHostWithWebViewNewInfoNum("3","30");
-//        var optionJson = "[{\"intentKey\":\"USER_ID_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"" + userID + "\"}]";
-//        webviewAndroidScript.startOtherNativeActivity2('com.taoguba.app.activity.UserCenterActivity', optionJson);
     }
 
-
-
-    //h5向调用原生
-    //data为json ，String类型
-    // tgbOpenID: 为开户淘股吧的开户用户ID 开户前会传过来，此时 tgbOpenID fmCode 福米那边应存入数据库 保存一对,并开一接口，淘股吧每天同步该数据
-    // fmCode: 福米开户后的唯一识别Code
-    // title: 打开wevview头部标题，html页面无需写标题, 若一定要用html标题 title传""，同时标题栏返回也需要在html页面处理 反之不需要处理
-    // url: 打开wevview加载url
-    // 登陆回调 和 开户回调 data = {\"action\":\"bindCallBack\",\"body\":{\"fmCode\":\"wgllss@qq.com\"}}
-    // 打开webviewjson格式事例 data={\"action\":\"openWebView\",\"body\":{\"title\":\"帮助页1\",\"url\":\"https://www.taoguba.com.cn\"}}
-    // 关闭webviewjson格式事例 data={\"action\":\"closeWebView\",\"body\":{}}
     function postMessage(data) {
         var u = navigator.userAgent;
         //判断是否为移动端
@@ -795,7 +775,7 @@
     function  commitreply(messageSeq) {
         var content =document.getElementById("txt_area_"+messageSeq).value;
         var paramsJson = "{\"messageSeq\":"+messageSeq+",\"content\":"+content+"}";
-        webviewAndroidScript.networkRequest("7006",""+messageSeq,"0","comp/dav/insertMessageReply","POST",paramsJson,"0");
+        webviewAndroidScript.networkRequest("7006",""+messageSeq,"0","","POST",paramsJson,"0");
     }
     //精选留言
     function toclassic(seq){
@@ -811,7 +791,7 @@
             which2 = '1';
         }
         var paramsJson = "{\"seq\":"+seq+",\"flag\":"+flag+",\"viewPointSeq\":\""+viewpointSeq+"\"}";
-        webviewAndroidScript.networkRequest("7007",which1,which2,"comp/dav/updateBestFlag","GET",paramsJson,"0");
+        webviewAndroidScript.networkRequest("7007",which1,which2,"","GET",paramsJson,"0");
     }
 
     //删除留言 删除留言回复
@@ -835,12 +815,12 @@
         if('1' == callbackMethodOkJson.type){//删除留言
             var seq = callbackMethodOkJson.seq+'';
             var paramsJson = "{\"seq\":"+seq+"}";
-            webviewAndroidScript.networkRequest("7008",seq,"0","comp/dav/deleteDavMessage","POST",paramsJson,"0");
+            webviewAndroidScript.networkRequest("7008",seq,"0","","POST",paramsJson,"0");
         }else  if('2' == callbackMethodOkJson.type) {//删除留言回复
             var seq = callbackMethodOkJson.seq+'';
             var replyseq = callbackMethodOkJson.replyseq+'';
             var paramsJson = "{\"seq\":"+replyseq+"}";
-            webviewAndroidScript.networkRequest("7009",seq,replyseq,"comp/dav/deleteDavReplyMessage","GET",paramsJson,"0");
+            webviewAndroidScript.networkRequest("7009",seq,replyseq,"","GET",paramsJson,"0");
         }
 
     }
