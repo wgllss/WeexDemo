@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title></title>
+    <script src="../js/jquery-1.9.1.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/idangerous.swiper.min.js"></script>
+    <link rel='stylesheet' href='../css/swiper.min.css'>
+
+    <style type="text/css">
+        html {
+            color: #000;
+            overflow-y: scroll;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%
+        }
+
+        html * {
+            outline: 0;
+            -webkit-text-size-adjust: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        body {
+            background: #FFF;
+            color: #4a4f5a;
+            font: 400 14px/1.5 "微软雅黑", Helvetica, STHeiti, Droid Sans Fallback;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            height: 100%;
+        }
+
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            margin: 0;
+            padding: 0
+        }
+        .scroller ul {
+            list-style: none;
+        }
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+        .wrapper03 {
+            position: relative;
+            height: 1rem;
+            width: 100%;
+            overflow: hidden;
+            margin: 0 auto;
+            border-bottom: 1px solid #ccc
+        }
+
+        .wrapper03 .scroller {
+            position: absolute
+        }
+
+        .wrapper03 .scroller li {
+            height: 1rem;
+            color: #333;
+            float: left;
+            line-height: 1rem;
+            font-size: .4rem;
+            text-align: center
+        }
+
+        .wrapper03 .scroller li a {
+            color: #333;
+            display: block;
+            margin: 0 .3rem;
+            padding: 0 .1rem;
+            text-decoration: none;
+        }
+
+        .wrapper03 .scroller li.cur a {
+            color: #1cbb9b;
+            height: .9rem;
+            border-bottom: .1rem solid #1cbb9b
+        }
+
+        .favor-list.swiper-container {
+            margin-top: 0rem;
+            width: 100%;
+        }
+
+
+        .horizontall_wrapper .scroller li {
+            height:60px;
+            border-bottom: 1px solid #eee;
+            background-color: #fff;
+            font-size: 14px;
+
+        }
+        .pullDownLabel img {
+            width: 13px;
+            height: 13px;
+            margin-top: -1px;
+            vertical-align: -2px;
+            margin-right: 5px;
+        }
+
+        /*favor-list*/
+        .favor-list.swiper-container{margin-top:0rem;width:100%;}
+        .favor-list dl{overflow:hidden;padding:1.1rem;border-bottom: 1px solid #e1e1e1;background-color: #fff;}
+        .favor-list a:first-child dl{border-top:1px solid #e1e1e1;}
+        .favor-list dt,.favor-list dd{float: left;}
+        .favor-list dt{width:30%;position: relative;}
+        .favor-list dt span{display: block;width:0.92rem;height:0.92rem;background-color: #fd3d3d;border-radius: 100%;-webkit-border-radius: 100%;-moz-border-radius: 100%;-ms-border-radius: 100%;-o-border-radius: 100%;
+            position: absolute;top:-0.5rem;right: -0.5rem;}
+        .favor-list dd{width:61%;margin-left:1rem;line-height:100%;}
+        .favor-list dd small{color:#9c9c9c;font-size: 0.92rem;display: block;}
+        .favor-list dd p{font-size:1.077rem;color:#666;display: block;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;margin:0;}
+        .favor-list dd h2{font-weight: normal;font-size:1.15rem;color:#333;}
+        .favor-list a{display: block;width: 100%;}
+        /*nofavor*/
+        .nofavor{width:46.8%;margin:16.5% auto 0 auto;}
+
+
+
+
+        @media screen and (min-width: 319px) and (max-width : 374px){
+            .favor-list dt span{width:0.7rem;height:0.7rem;top:-0.3rem;right:-0.3rem;}
+            .favor-list dd{line-height: 90%;}
+            .favor-list dd small{font-size: 0.85rem;}
+            .favor-list dd p{font-size:0.92rem;}
+            .favor-list dd h2{font-size:1.1rem;}
+
+        }
+    </style>
+</head>
+<body>
+    <div class="horizontall_wrapper wrapper03" id="wrapper03">
+        <div class="scroller">
+            <ul class="clearfix">
+                <li><a href="javascript:void(0)">全部科目</a></li>
+                <li><a href="javascript:void(0)">会计从业</a></li>
+                <li><a href="javascript:void(0)">会计职称</a></li>
+                <li><a href="javascript:void(0)">注会</a></li>
+                <li><a href="javascript:void(0)">税务师</a></li>
+                <li><a href="javascript:void(0)">国际证书</a></li>
+                <li><a href="javascript:void(0)">更多</a></li>
+                <li><a href="javascript:void(0)">更多注会</a></li>
+                <li><a href="javascript:void(0)">国际证书2</a></li>
+                <li><a href="javascript:void(0)">更多4</a></li>
+                <li><a href="javascript:void(0)">更多5</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="swiper-container favor-list">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div  class="wrapper" id="wrapper">
+                    <div class="nofavor">
+                        <img src="../images/panda.png">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/flexible.js"></script>
+<script type="text/javascript" src="../js/iscroll_h.js"></script>
+<script type="text/javascript" src="../js/navbarscroll.js"></script>
+
+
+<script type="text/javascript">
+    var webviewAndroidScript = window.injs;
+
+    $(function () {
+
+        //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
+        $('.horizontall_wrapper').navbarscroll();
+
+
+
+//        //demo示例五 通过id调取
+//        $('#demo05').navbarscroll({
+//            defaultSelect: 6,
+//            endClickScroll: function (obj) {
+//                console.log(obj.text())
+//            }
+//        });
+//
+//        //demo示例六 通过id调取
+//        $('#demo06').navbarscroll({
+//            defaultSelect: 3,
+//            scrollerWidth: 6,
+//            fingerClick: 1,
+//            endClickScroll: function (obj) {
+//                console.log(obj.text())
+//            }
+//        });
+    });
+
+    var mySwiper = new Swiper('.swiper-container', {
+        autoHeight: true,
+        onSlideChangeStart: function () {
+            $(".tabs .default").removeClass('default');
+            $(".tabs li").eq(mySwiper.activeIndex).addClass('default');
+//            webviewAndroidScript.setOnDrawerBackEnabled(""+mySwiper.activeIndex);
+        }
+    });
+
+    refresher.init({
+        id: "wrapper",
+        pullDownAction: Refresh,
+        pullUpAction: Load
+    });
+    function Refresh() {
+        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+            var el, li, i;
+            el = document.querySelector("#wrapper ul");
+            //这里写你的刷新代码
+            document.getElementById("wrapper").querySelector(".pullDownIcon").style.display = "none";
+            document.getElementById("wrapper").querySelector(".pullDownLabel").innerHTML = "<img src='../css/ok.png'/>刷新成功";
+            setTimeout(function () {
+                wrapper.refresh();
+                document.getElementById("wrapper").querySelector(".pullDownLabel").innerHTML = "";
+            }, 1000);//模拟qq下拉刷新显示成功效果
+            /****remember to refresh after  action completed！ ---yourId.refresh(); ----| ****/
+        }, 1000);
+    }
+    function Load() {
+        setTimeout(function () {// <-- Simulate network congestion, remove setTimeout from production!
+            var el, li, i;
+            el = document.querySelector("#wrapper ul");
+            for (i = 0; i < 2; i++) {
+                li = document.createElement('li');
+                li.innerHTML = "<img src='../img/game8.png'><div class='game-info'><h1>华仔超神战记</h1><p>9万次下载     89.18M</p><p>秒杀虚拟摇杆，砸烂手机键盘</p></div><button>下载</button>"
+                el.appendChild(li, el.childNodes[0]);
+            }
+            wrapper.refresh();
+            /****remember to refresh after action completed！！！   ---id.refresh(); --- ****/
+        }, 2000);
+    }
+
+    function clickdf() {
+        alert("dfdfd");
+        var index = 8;
+        $('#wrapper03').navbarscroll({
+            defaultSelect: index
+        });
+    }
+    
+    function initValue() {
+        webviewAndroidScript.setOnDrawerBackEnabled("1");
+    }
+
+    //下拉刷新
+    function onPullDown() {
+        webviewAndroidScript.onStopRefresh();
+    }
+
+    //上拉加载更多
+    function onPullUp() {
+        webviewAndroidScript.onStopRefresh();
+    }
+</script>

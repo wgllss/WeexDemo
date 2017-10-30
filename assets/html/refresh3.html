@@ -26,6 +26,9 @@ body, html {
 	font-size: 14px;
 	
 }
+.wrapper :active{
+  background-color: #DDDDDD;
+}
 .pullDownLabel img {
 	width: 13px;
 	height: 13px;
@@ -33,12 +36,48 @@ body, html {
 	vertical-align: -2px;
 	margin-right: 5px;
 }
-#wrapper ul li img{width:60px; float:left;  margin-left:10px;}
-.game-info{text-align:left; float:left; margin-left:10px; width:210px; overflow:hidden; height:60px;}
-.game-info h1{font-size:16px; margin-bottom:8px;}
-.game-info p:nth-child(2){font-size:12px; color:#B6B6B6;}
-.game-info p:nth-child(3){font-size:12px; color:#9D9D9D;}
-#wrapper ul li button{position:absolute; right:20px; margin-top:10px; background-color:#F8CD0C; border:0; color:#fff; font-family:Microsoft YaHei; padding:5px 14px; border-radius:3px;}
+
+#wrapper ul li img {
+  width: 60px;
+  float: left;
+  margin-left: 10px;
+}
+
+.game-info {
+  text-align: left;
+  float: left;
+  margin-left: 10px;
+  width: 210px;
+  overflow: hidden;
+  height: 60px;
+}
+
+.game-info h1 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.game-info p:nth-child(2) {
+  font-size: 12px;
+  color: #B6B6B6;
+}
+
+.game-info p:nth-child(3) {
+  font-size: 12px;
+  color: #9D9D9D;
+}
+
+#wrapper ul li button {
+  position: absolute;
+  right: 20px;
+  margin-top: 10px;
+  background-color: #F8CD0C;
+  border: 0;
+  color: #fff;
+  font-family: Microsoft YaHei;
+  padding: 5px 14px;
+  border-radius: 3px;
+}
   .wrapper{
     background-color: #CCE8CD;
   }
@@ -111,9 +150,42 @@ body, html {
       </div>
       <button>下载</button>
     </li>
+    <li>
+      <img src="../img/game7.png">
+      <div class="game-info">
+        <h1>展哥剑风传奇</h1>
+        <p>5万次下载 89.18M</p>
+        <p>漫画神作改编 首创三维一体玩法RPG巨作</p>
+      </div>
+      <button>下载</button>
+    </li>
+    <li>
+      <img src="../img/game7.png">
+      <div class="game-info">
+        <h1>展哥剑风传奇</h1>
+        <p>5万次下载 89.18M</p>
+        <p>漫画神作改编 首创三维一体玩法RPG巨作</p>
+      </div>
+      <button>下载</button>
+    </li>
+    <li>
+      <img src="../img/game7.png">
+      <div class="game-info">
+        <h1>展哥剑风传奇</h1>
+        <p>5万次下载 89.18M</p>
+        <p>漫画神作改编 首创三维一体玩法RPG巨作</p>
+      </div>
+      <button>下载</button>
+    </li>
   </ul>
 </div>
 <script>
+    var webviewAndroidScript = window.injs;
+
+    function initValue() {
+        webviewAndroidScript.setOnDrawerBackEnabled("1");
+    }
+
     refresher.init({
         id: "wrapper",
         pullDownAction: Refresh,
@@ -121,8 +193,8 @@ body, html {
     });
     function Refresh() {
         setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-            var el, li, i;
-            el = document.querySelector("#wrapper ul");
+//            var el, li, i;
+//            el = document.querySelector("#wrapper ul");
             //这里写你的刷新代码
             document.getElementById("wrapper").querySelector(".pullDownIcon").style.display = "none";
             document.getElementById("wrapper").querySelector(".pullDownLabel").innerHTML = "<img src='../css/ok.png'/>刷新成功";
