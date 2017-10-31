@@ -127,32 +127,12 @@
 </style>
 
 <body>
-<!-- header ad -->
-<div id="header_ad"></div>
 <div id="listview"></div>
 </body>
 </html>
 
 <script src="../js/laytpl.js"></script>
 <script src="../js/layui.js"></script>
-<script id="demo" type="text/html">
-    <div class="swiper-container favor-list">
-        <div class="swiper-wrapper">
-            {{# if( data.list.length > 0 ){ }}
-                {{# for(var i = 0, len = data.list.length; i < len; i++){ }}
-                    <div class="swiper-slide">
-                        <img src="{{ data.list[i].url }}" class="swiper-lazy">
-                        <!--<div class="swiper-lazy-preloader"></div>-->
-                        <div class="ad_title">{{ data.list[i].title}}</div>
-                    </div>
-                {{# } }}
-            {{# }}}
-        </div>
-        <div class="swiper-pagination "></div>
-        <div class="ad_page_count"><span class="current_page_ad">1</span>/{{ data.list.length }}</div>
-    </div>
-</script>
-
 <script id="template_list" type="text/html">
     {{# if( list.length > 0 ){ }}
         {{# for(var i = 0, len = list.length; i < len; i++){ }}
@@ -160,11 +140,11 @@
                     <div class="listview" onclick="javascript:onClickItem(&quot;{{ list[i].docid}}&quot;)">
                         <div>
                             <div class="left_div">
-                                <img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].picInfo[0].url }}"/>
+                                <img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].imgsrc }}"/>
                             </div>
                             <div class="right_div">
                                 <div class="title title_margin_left">{{ list[i].title}}</div>
-                                <div class="type type1"><span>{{ list[i].source}}</span><span class="read">{{ list[i].tcount }}阅读</span></div>
+                                <div class="type type1"><span>{{ list[i].source}}</span><span class="read">{{ list[i].commentCount }}评论</span></div>
                             </div>
                         </div>
                     </div>
@@ -175,12 +155,12 @@
                         <div class="title">{{ list[i].title}}</div>
                         <div class="gird_layout">
                             <ul class="box">
-                                <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].picInfo[0].url }}"/></a></li>
-                                <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].picInfo[1].url }}"/></a></li>
-                                <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].picInfo[2].url }}"/></a></li>
+                                <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].imgsrc }}"/></a></li>
+                                <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].imgextra[0].imgsrc }}"/></a></li>
+                                <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  data-original="{{ list[i].imgextra[1].imgsrc }}"/></a></li>
                             </ul>
                         </div>
-                        <div class="type2 "><span>{{ list[i].source}}</span><span class="read">{{ list[i].tcount }}阅读</span></div>
+                        <div class="type2 "><span>{{ list[i].source}}</span><span class="read">{{ list[i].commentCount }}评论</span></div>
                     </div>
                     <div class="line"></div>
             {{# } }}
@@ -194,8 +174,7 @@
     var ad_swiper_count;
     var pageNo = 1;
 
-//    var url = "";
-    var url = "https://3g.163.com/touch/nc/api/user/recommend/GuessLike/3-0-10-40.do?";
+    var url = "http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html?";
 
     var data = {
         list: [
@@ -224,7 +203,6 @@
     function onPullDown() {
         pageNo = 1;
         requestHttp();
-
     }
 
     //上拉加载更多 固定方法
@@ -248,74 +226,22 @@
     function requestHttp(){
         //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
         var paramsJson = "{\"hasad\":\""+pageNo+"\",\"size\":\"0\"}";
-        webviewAndroidScript.networkRequest("7005","0","0","https://3g.163.com/touch/jsonp/sy/recommend/0-10.html?","GET",paramsJson,"1");
-    }
-    
-    function requstListData() {
-        var paramsJson = "{\"offset\":\"1\",\"size\":\"20\"}";
         webviewAndroidScript.networkRequest("7006","0","0",url,"GET",paramsJson,"1");
     }
 
     //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
     function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
-        if (strMsgWhat == 7005) {
-            try{
-                json = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
-                json = json.substring(9,json.length-1);
-                json = JSON.parse(json);
-
-                if(json && json.focus && json.focus.length >0){
-                    data.list.splice(0, data.list.length);
-                    for (var i = 0 ;  i < json.focus.length ; i++){
-                        if(json.focus[i].picInfo && json.focus[i].picInfo.length > 0){
-                            var item = {};
-                            item.title = json.focus[i].title;
-                            item.url= json.focus[i].picInfo[0].url;
-                            data.list.push(item);
-                        }
-                    }
-                    ad_swiper_count = data.list.length;
-                    $("#header_ad").html("");
-                    insertHtmlData("demo", "header_ad");
-
-                    mySwiper = new Swiper('.swiper-container', {
-                        autoplay: 5000,//可选选项，自动滑动
-                        lazyLoading: true,
-                        lazyLoadingInPrevNext : true,
-                        loop : true,
-                        lazyLoadingInPrevNextAmount: 4,
-                        pagination: '.swiper-pagination',
-                        onSlideChangeStart: function () {
-                            var index = mySwiper.activeIndex;
-                            if(index > ad_swiper_count){
-                                index = 1;
-                            }
-                            if(index < 1){
-                                index = ad_swiper_count;
-                            }
-                            $(".current_page_ad").html(""+index);
-
-                        },
-                        onTouchStart: function(swiper, event){
-                            webviewAndroidScript.setViewPagerRequestDisallowInterceptTouchEvent("1");
-                        }
-                    });
-                }
-                requstListData();
-
-            }catch (e){
-                alert(e.toString())
-            }
-        }else if (strMsgWhat == 7006) {
+        if (strMsgWhat == 7006) {
            var result = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
-            result = JSON.parse(result);
-            if(result && result.list && result.list.length >0){
-                list.splice(0, list.length);
-                for (var i = 0 ;  i < result.list.length ; i++){
-                    list.push(result.list[i]);
-                }
-                insertHtmlData("template_list", "listview");
-            }
+           result = result.substring(9,result.length-1);
+           result = JSON.parse(result);
+           if(result && result.BBM54PGAwangning && result.BBM54PGAwangning.length >0){
+               list.splice(0, list.length);
+               for (var i = 0 ;  i < result.BBM54PGAwangning.length ; i++){
+                   list.push(result.BBM54PGAwangning[i]);
+               }
+               insertHtmlData("template_list", "listview");
+           }
         }
     }
 
