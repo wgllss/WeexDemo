@@ -154,6 +154,16 @@
                         </div>
                         <div class="line"></div>
                 {{# } }}
+                {{# if( list[i].imgsrc3gtype == 3  ){ }}
+                        <div class="listview" onclick="javascript:onClickItem(&quot;{{ list[i].docid}}&quot;)">
+                            <div class="title">{{ list[i].title}}</div>
+                            <div class="swiper-slide" onclick="javascript:onClickItem(&quot;{{ list[i].docid}}&quot;)">
+                                <img src = "../images/wangyedefault.png" data-original="{{ list[i].imgsrc }}" class="lazy">
+                            </div>
+                            <div class="type2 "><span>{{ list[i].source}}</span><span class="read">{{ list[i].commentCount }}评论</span></div>
+                        </div>
+                         <div class="line"></div>
+                {{# } }}
              {{# } }}
         {{# } }}
     {{# }}}
@@ -164,10 +174,9 @@
     var skinType = "0";//皮肤模式 0：白天，1：夜间
     var pageNo = 0;
 
-    var url = "http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/";
+    var url = "http://3g.163.com/touch/reconstruct/article/list/BAI6I0O5wangning/";
 
     var list =[];
-
 
     //接收初始值 固定方法
     function initValue(options) {
@@ -209,22 +218,22 @@
     function requestHttp(){
         //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
         var paramsJson = "{\"hasad\":\""+pageNo+"\",\"size\":\"0\"}";
-        webviewAndroidScript.networkRequest("7007","0","0",url+pageNo+"-"+(pageNo+10)+".html?","GET",paramsJson,"1");
+        webviewAndroidScript.networkRequest("7015","0","0",url+pageNo+"-"+(pageNo+10)+".html?","GET",paramsJson,"1");
     }
 
     //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
     function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
-        if (strMsgWhat == 7007) {
+        if (strMsgWhat == 7015) {
            var result = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
            result = result.substring(9,result.length-1);
            result = JSON.parse(result);
-           if(result && result.BBM54PGAwangning && result.BBM54PGAwangning.length >0){
+           if(result && result.BAI6I0O5wangning && result.BAI6I0O5wangning.length >0){
                if(pageNo == 0){
                     $("#listview").html("");
                }
                list.splice(0, list.length);
-               for (var i = 0 ;  i < result.BBM54PGAwangning.length ; i++){
-                   list.push(result.BBM54PGAwangning[i]);
+               for (var i = 0 ;  i < result.BAI6I0O5wangning.length ; i++){
+                   list.push(result.BAI6I0O5wangning[i]);
                }
                insertHtmlData("template_list", "listview");
            }

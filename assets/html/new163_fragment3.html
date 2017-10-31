@@ -164,10 +164,9 @@
     var skinType = "0";//皮肤模式 0：白天，1：夜间
     var pageNo = 0;
 
-    var url = "http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/";
+    var url = "http://3g.163.com/touch/reconstruct/article/list/BA8E6OEOwangning/";
 
     var list =[];
-
 
     //接收初始值 固定方法
     function initValue(options) {
@@ -209,22 +208,22 @@
     function requestHttp(){
         //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
         var paramsJson = "{\"hasad\":\""+pageNo+"\",\"size\":\"0\"}";
-        webviewAndroidScript.networkRequest("7007","0","0",url+pageNo+"-"+(pageNo+10)+".html?","GET",paramsJson,"1");
+        webviewAndroidScript.networkRequest("7009","0","0",url+pageNo+"-"+(pageNo+10)+".html?","GET",paramsJson,"1");
     }
 
     //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
     function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
-        if (strMsgWhat == 7007) {
+        if (strMsgWhat == 7009) {
            var result = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
            result = result.substring(9,result.length-1);
            result = JSON.parse(result);
-           if(result && result.BBM54PGAwangning && result.BBM54PGAwangning.length >0){
+           if(result && result.BA8E6OEOwangning && result.BA8E6OEOwangning.length >0){
                if(pageNo == 0){
                     $("#listview").html("");
                }
                list.splice(0, list.length);
-               for (var i = 0 ;  i < result.BBM54PGAwangning.length ; i++){
-                   list.push(result.BBM54PGAwangning[i]);
+               for (var i = 0 ;  i < result.BA8E6OEOwangning.length ; i++){
+                   list.push(result.BA8E6OEOwangning[i]);
                }
                insertHtmlData("template_list", "listview");
            }
