@@ -1,8 +1,9 @@
 ﻿{
-	"versionName": "5.397",
+	"versionName": "5.402",
 	"isReplace": true,
 	"skinVersion": "4.213",
 	"replaceMinVersion": "1.0",
+	"loadImage_Version": "1.51",
 	"topMenu": {
 		"showDividerLine": false,
 		"shouldExpand": false,
@@ -92,7 +93,7 @@
 			"huo_flag_marginTop": 10,
 			"huo_flag_size": 10,
 			"onClickInfo": {
-				"needLogin": true,
+				"needLogin": true
 			}
 		}, {
 			"ID": 1013,
@@ -115,7 +116,7 @@
 			}
 		}]
 	},
-	"loading_images": ["http://img.zcool.cn/community/01acc1571de5fb6ac72538120e3836.png", "http://img.zcool.cn/community/01a03b564da3d632f87512f695e7b4.png"],
+	"loading_images": ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532067486482&di=b5158f26c54208acfd12a040bc70f1db&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01b9c5557555780000002d5c219c7f.jpg", "http://img.zcool.cn/community/01a03b564da3d632f87512f695e7b4.png"],
 	"CommunityActivityJson": {
 		"TITLE": "今日推荐",
 		"showDividerLine": false,
