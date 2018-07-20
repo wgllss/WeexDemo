@@ -15,7 +15,6 @@
 			"infoNum": 0,
 			"onClickInfo": {
 				"needLogin": true,
-				"className": "com.open.taogubaweex.MainActivity",
 				"optionJson": "[{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"dav/build/src/viewpoint-pager.js\"}]"
 			}
 		}, {
@@ -27,7 +26,6 @@
 			"infoNum": 0,
 			"onClickInfo": {
 				"needLogin": false,
-				"className": "com.taoguba.app.activity.DealPlanActivity",
 				"onEventInfo": "{\"eventName\":\"买啥-淘股宝\",\"eventID\":\"1002\",\"eventType\":\"0\"}"
 			}
 		}, {
@@ -42,7 +40,6 @@
 			"infoNumMarginLeft": 18,
 			"infoNumMarginTop": 7,
 			"onClickInfo": {
-				"className": "com.open.taogubaweex.MainActivity",
 				"optionJson": "[{\"intentKey\":\"URL_KEY\",\"intentKeyValueClassName\":\"String\",\"intentKeyValue\":\"storm/build/src/slider-pager.js\"}]",
 				"onEventInfo": "{\"eventName\":\"股市直播\",\"eventID\":\"4034\",\"eventType\":\"0\"}"
 			}
@@ -53,7 +50,6 @@
 			"orientation": "0",
 			"onClickInfo": {
 				"needLogin": false,
-				"className": "com.taoguba.app.activity.kgame.KGameHomeActivity",
 				"onEventInfo": "{\"eventName\":\"买啥-交易练习\",\"eventID\":\"1006\",\"eventType\":\"0\"}"
 			}
 		}, {
@@ -64,7 +60,6 @@
 			"orientation": "0",
 			"infoNum": 0,
 			"onClickInfo": {
-				"className": "com.taoguba.app.activity.TopicOnListActivityNew",
 				"onEventInfo": "{\"eventName\":\"买啥-牛人榜\",\"eventID\":\"1007\",\"eventType\":\"0\"}"
 			}
 		}, {
@@ -75,7 +70,6 @@
 			"orientation": "0",
 			"infoNum": 0,
 			"onClickInfo": {
-				"className": "com.taoguba.app.activity.CommunityActivity",
 				"specialInfo": "{\"tabHostposition\":2,\"viewPagerItem\":2}"
 			}
 		}]
@@ -99,7 +93,6 @@
 			"huo_flag_size": 10,
 			"onClickInfo": {
 				"needLogin": true,
-				"className": "com.taoguba.app.activity.shipan.TaogubaShiPanTabActivity"
 			}
 		}, {
 			"ID": 1013,
@@ -118,7 +111,6 @@
 			"huo_flag_size": 42,
 			"onClickInfo": {
 				"needLogin": false,
-				"className": "com.taoguba.app.activity.tpy.TpyAccountLoginActivity",
 				"onEventInfo": "{\"eventName\":\"买啥-开户\",\"eventID\":\"1013\",\"eventType\":\"0\"}"
 			}
 		}]
