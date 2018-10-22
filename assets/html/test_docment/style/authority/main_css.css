@@ -143,23 +143,23 @@ html, body {
     margin-top: 10px;
 }
 
-#left_menu_cnt #nav_module {
-    position: fixed;
-    padding-left: 10px;
-    background: #F1F1F1;
-}
+/*#left_menu_cnt #nav_module {*/
+    /*position: fixed;*/
+    /*padding-left: 10px;*/
+    /*background: #F1F1F1;*/
+/*}*/
 
-#left_menu_cnt #nav_resource {
-    margin-top: 0px;
-    overflow: auto;
-}
+/*#left_menu_cnt #nav_resource {*/
+    /*margin-top: 0px;*/
+    /*overflow: auto;*/
+/*}*/
 
-#TabPage2 li {
-    padding: 19px 9px 19px 15px;
-    cursor: pointer;
-}
+/*#TabPage2 li {*/
+    /*padding: 19px 9px 19px 15px;*/
+    /*cursor: pointer;*/
+/*}*/
 
-.selected {
-    background: #FFF;
-    cursor: pointer;
-}
+/*.selected {*/
+    /*background: #FFF;*/
+    /*cursor: pointer;*/
+/*}*/
