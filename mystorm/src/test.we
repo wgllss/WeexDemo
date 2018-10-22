@@ -2,6 +2,7 @@
   <scroller>
     <div id="r">
       <text>{{x}} http://localhost:8080/index.html?page=./mystorm/build/src/test.js</text>
+      <text>{{x}} 00250520</text>
       <div style="height: 2000; background-color: #0ef000;"></div>
       <text onclick="foo"> </text>
     </div>

@@ -1,8 +1,8 @@
 <template>
   <scroller>
     <div id="r">
-      <text>{{x}} http://localhost:8080/index.html?page=./mystorm/build/src/test.js</text>
-      <div style="height: 2000; background-color: #ff0000;"></div>
+      <text>{{x}} http://localhost:8080/index.html?page=./mystorm666/build/src/test.js</text>
+      <div style="height: 2000; background-color: #0eddff;"></div>
       <text onclick="foo"> </text>
     </div>
   </scroller>

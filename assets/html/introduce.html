@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="width">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/WebViewJavascriptBridge.js"></script>
+<style>
+    html {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        background: #FFF;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    .title_lable {
+        width: 93%;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .title p {
+        width: 100%;
+        color: #111111;
+    }
+
+    .header_title {
+        text-align: center;
+        padding-top: 20px;
+        color: #000000;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .xml_bg {
+        background-color: #DDDDDD;
+        padding: 10px;
+        text-align: left;
+        overflow: auto;
+    }
+
+</style>
+<body>
+    <div class="header_title">使用说明</div>
+    <div class="title_lable">
+        <p>1.首先html头部要 添加引用 以下固定js文件，该js文件不需要放置在服务端已经放置在客户端里面了</br>
+            <xmp class="xml_bg">
+<script> type = "text/javascript" src = "../js/WebViewJavascriptBridge.js" ></script>
+            </xmp>
+        </p>
+    </div>
+</body>
+</html>
+
+<script>
+    connectWebViewJavascriptBridge(function (bridge) {
+        bridge.init(function (options, responseCallback) { //接收初始值 固定方法
+            options = JSON.parse(options);
+            skinType = options.skinType;
+            isLoadImage = options.isLoadImage;
+
+            //主动调用下拉刷新
+            window.WebViewJavascriptBridge.callHandler("native_setRefreshing", null);
+
+            //设置成不滑动返回
+            window.WebViewJavascriptBridge.callHandler('native_setOnDrawerBackEnabled', "0", null);
+
+            //设置不缩放字体
+            // window.WebViewJavascriptBridge.callHandler('native_setZoomTextSize', '0', null);
+        });
+
+        bridge.registerHandler("native_onPullDown", function (data, responseCallback) {//下拉刷新 固定方法
+            window.WebViewJavascriptBridge.callHandler("native_onStopRefresh", null);
+        });
+
+        bridge.registerHandler("native_onPullUp", function (data, responseCallback) {  //上拉加载更多 固定方法
+            window.WebViewJavascriptBridge.callHandler("native_onStopRefresh", null);
+        });
+
+        bridge.registerHandler("native_onClickTopRight", function (data, responseCallback) {  //点击原生导航栏顶部右边 文字或者图片
+            window.WebViewJavascriptBridge.callHandler("native_toast", "点击了顶部右边", null);
+        });
+
+        bridge.registerHandler("native_changeSkin", function (skinType, responseCallback) {  //改变皮肤 固定方法
+            if ('1' == skinType) {//夜间模式
+
+            } else {
+
+            }
+        });
+    })
+
+</script>

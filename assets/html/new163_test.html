@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>网易新闻</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+<link rel='stylesheet' href='../css/swiper.min.css'>
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/idangerous.swiper.min.js"></script>
+<script type="text/javascript" src="../js/WebViewJavascriptBridge.js"></script>
+<style>
+    html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, a, address, cite, del, em, img, q, u, i, dl, dt, dd, ol, ul, li, form,
+    label, table, tr, th, td, caption, tbody, tfoot, thead, article, aside, details, summary, figure, figcaption, footer, header, menu, nav,
+    section, audio, input, select, textarea {
+        margin: 0;
+        padding: 0;
+        border: 0;;
+    }
+
+    header, footer, nav, section, menu, article, aside {
+        display: block;
+    }
+
+    body {
+        color: #666;
+        min-width: 320px;
+        max-width: 750px;
+        margin: 0 auto;
+        cursor: default;
+        word-break: break-all;
+        white-space: normal;
+        background-color: #f5f5f5;
+    }
+
+    .favor-list.swiper-container {
+        width: 100%;
+        height: 140px;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: 140px;
+    }
+
+    .ad_title {
+        margin-top: -35px;
+        font-size: 16px;
+        padding-left: 20px;
+        color: #ffffff;
+    }
+
+    .ad_page_count {
+        position: relative;
+        margin-top: -30px;
+        float: right;
+        margin-right: 20px;
+        color: #ffffff;
+        z-index: 999;
+    }
+
+    .current_page_ad {
+        color: #fd3d3d;
+    }
+
+    .listview {
+        padding: 10px;
+        overflow: auto;
+    }
+
+    div :active {
+        background-color: #DDDDDD;
+    }
+
+    .left_div {
+        float: left;
+        width: 25%;
+    }
+
+    .right_div {
+        float: right;
+        width: 75%;
+    }
+
+    .title {
+        font-size: 16px;
+        color: #4a4f5a;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        margin-top: 3px;
+        -webkit-box-orient: vertical;
+        overflow: auto;
+    }
+
+    .title_margin_left {
+        margin-left: 10px;
+    }
+
+    .type {
+        color: #9c9c9c;
+    }
+
+    .type1 {
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .type2 {
+        margin-top: 5px;
+        color: #9c9c9c;
+    }
+
+    .read {
+        margin-left: 10px;
+    }
+
+    .line {
+        background-color: #DDDDDD;
+        width: 100%;
+        height: 1px;
+        overflow: auto;
+    }
+
+    .gird_layout {
+        width: 100%;
+        height: 70px;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .box li {
+        display: inline-block;
+        float: left;
+        width: 32.5%;
+        height: 70px;
+    }
+
+    .box li a img {
+        width: 99%;
+        height: 70px;
+    }
+</style>
+
+<body>
+<!-- header ad -->
+<div id="header_ad"></div>
+<div id="listview"></div>
+</body>
+</html>
+
+<script src="../js/laytpl.js"></script>
+<script src="../js/layui.js"></script>
+<script id="demo" type="text/html">
+    <div class="swiper-container favor-list">
+        <div class="swiper-wrapper">
+            {{# if( data.list.length > 0 ){ }}
+            {{# for(var i = 0, len = data.list.length; i < len; i++){ }}
+            <div class="swiper-slide">
+                <img src="{{ data.list[i].url }}" class="swiper-lazy">
+                <!--<div class="swiper-lazy-preloader"></div>-->
+                <div class="ad_title">{{ data.list[i].title}}</div>
+            </div>
+            {{# } }}
+            {{# }}}
+        </div>
+        <div class="swiper-pagination "></div>
+        <div class="ad_page_count"><span class="current_page_ad">1</span>/{{ data.list.length }}</div>
+    </div>
+</script>
+
+<script id="template_list" type="text/html">
+    {{# if( list.length > 0 ){ }}
+    {{# for(var i = 0, len = list.length; i < len; i++){ }}
+    {{# if( list[i].imgsrc3gtype == 1  ){ }}
+    <div class="listview" >
+        <div>
+            <div class="left_div">
+                <img class="lazy" width="100%" height="70px" src="../images/wangyedefault.png" data-original="{{ list[i].picInfo[0].url }}"/>
+            </div>
+            <div class="right_div">
+                <div class="title title_margin_left">{{ list[i].title}}</div>
+                <div class="type type1"><span>{{ list[i].source}}</span><span class="read">{{ list[i].tcount }}阅读</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    {{# } }}
+    {{# if( list[i].imgsrc3gtype == 2  ){ }}
+    <div class="listview" onclick="javascript:onClickItem(&quot;{{ list[i].docid}}&quot;)">
+        <div class="title">{{ list[i].title}}</div>
+        <div class="gird_layout">
+            <ul class="box">
+                <li><a><img class="lazy" width="100%" height="70px" src="../images/wangyedefault.png" data-original="{{ list[i].picInfo[0].url }}"/></a></li>
+                <li><a><img class="lazy" width="100%" height="70px" src="../images/wangyedefault.png" data-original="{{ list[i].picInfo[1].url }}"/></a></li>
+                <li><a><img class="lazy" width="100%" height="70px" src="../images/wangyedefault.png" data-original="{{ list[i].picInfo[2].url }}"/></a></li>
+            </ul>
+        </div>
+        <div class="type2 "><span>{{ list[i].source}}</span><span class="read">{{ list[i].tcount }}阅读</span></div>
+    </div>
+    <div class="line"></div>
+    {{# } }}
+    {{# } }}
+    {{# }}}
+</script>
+<script>
+    var ad_swiper_count;
+    var pageNo = 1;
+
+    var data = {
+        list: []
+    };
+
+    var list = [];
+
+    var mySwiper;
+
+    connectWebViewJavascriptBridge(function (bridge) {
+        bridge.init(function (options, responseCallback) { //接收初始值 固定方法
+
+            //主动调用下拉刷新
+            window.WebViewJavascriptBridge.callHandler("native_setRefreshing", null);
+
+            //设置成不滑动返回
+            window.WebViewJavascriptBridge.callHandler('native_setOnDrawerBackEnabled', "0", null);
+
+        });
+
+        bridge.registerHandler("native_onPullDown", function (data, responseCallback) {//下拉刷新 固定方法
+            pageNo = 1;
+            requestHttp();
+        });
+
+        bridge.registerHandler("native_onPullUp", function (data, responseCallback) {  //上拉加载更多 固定方法
+            pageNo++;
+            requstListData();
+        });
+
+        bridge.registerHandler("native_onClickTopRight", function (data, responseCallback) {  //点击原生导航栏顶部右边 文字或者图片
+            window.WebViewJavascriptBridge.callHandler("native_toast", "点击了顶部右边", null);
+        });
+
+        bridge.registerHandler("native_changeSkin", function (skinType, responseCallback) {  //改变皮肤 固定方法
+            if ('1' == skinType) {//夜间模式
+
+            } else {
+
+            }
+        });
+    })
+
+    function requestHttp() {
+        var paramsJson = "{\"hasad\":\"" + pageNo + "\",\"size\":\"0\"}";
+        var data = {
+            "msgWhat": "70005",
+            "whichThred1": "0",
+            "whichThred2": "0",
+            "url": "https://3g.163.com/touch/jsonp/sy/recommend/0-10.html?",
+            "requestMethod": "GET",
+            "paramsJson": paramsJson,
+            "specialHtml": "1"
+        }
+        native_networkRequest(data);
+    }
+
+    function requstListData() {
+        var paramsJson = "{\"offset\":\"1\",\"size\":\"20\"}";
+        var data = {
+            "msgWhat": "70006",
+            "whichThred1": "0",
+            "whichThred2": "0",
+            "url": "https://3g.163.com/touch/nc/api/user/recommend/GuessLike/3-0-10-40.do?",
+            "requestMethod": "GET",
+            "paramsJson": paramsJson,
+            "specialHtml": "0"
+        }
+        native_networkRequest(data);
+    }
+    
+    function native_networkRequest(data) {
+        window.WebViewJavascriptBridge.callHandler('native_networkRequest', data, function (responseData) {
+            var result  = JSON.parse(responseData);
+            var resultJson;
+            if(result.specialHtml == "1"){
+                resultJson = androidJavaScript.getJson(result.msgWhat, result.whichThred1, result.whichThred2)
+            }else{
+                resultJson = result.result;
+            }
+            netWorkCallBack(result.msgWhat, result.whichThred1, result.whichThred2, resultJson);
+        });
+    }
+
+    //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
+    function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
+        if (strMsgWhat == 70005) {
+            try {
+                json = json.substring(9, json.length - 1);
+                json = JSON.parse(json);
+
+                if (json && json.focus && json.focus.length > 0) {
+                    data.list.splice(0, data.list.length);
+                    for (var i = 0; i < json.focus.length; i++) {
+                        if (json.focus[i].picInfo && json.focus[i].picInfo.length > 0) {
+                            var item = {};
+                            item.title = json.focus[i].title;
+                            item.url = json.focus[i].picInfo[0].url;
+                            data.list.push(item);
+                        }
+                    }
+                    ad_swiper_count = data.list.length;
+                    $("#header_ad").html("");
+                    insertHtmlData("demo", "header_ad");
+
+                    mySwiper = new Swiper('.swiper-container', {
+                        autoplay: 5000,//可选选项，自动滑动
+                        lazyLoading: true,
+                        lazyLoadingInPrevNext: true,
+                        loop: true,
+                        lazyLoadingInPrevNextAmount: 4,
+                        pagination: '.swiper-pagination',
+                        onSlideChangeStart: function () {
+                            var index = mySwiper.activeIndex;
+                            if (index > ad_swiper_count) {
+                                index = 1;
+                            }
+                            if (index < 1) {
+                                index = ad_swiper_count;
+                            }
+                            $(".current_page_ad").html("" + index);
+
+                        },
+                        onTouchStart: function (swiper, event) {
+                        }
+                    });
+                }
+                requstListData();
+
+            } catch (e) {
+                alert(e.toString())
+            }
+        } else if (strMsgWhat == 70006) {
+            result = JSON.parse(json);
+            if (result && result.list && result.list.length > 0) {
+                list.splice(0, list.length);
+                for (var i = 0; i < result.list.length; i++) {
+                    list.push(result.list[i]);
+                }
+                insertHtmlData("template_list", "listview");
+            }
+        }
+    }
+
+    //插入数据到 模板中
+    function insertHtmlData(htmlTemplateID, divID) {
+        var gettpl = document.getElementById(htmlTemplateID).innerHTML;
+        laytpl(gettpl).render(data, function (html) {
+            if (pageNo == 1) {
+                $("#" + divID).html(html);
+            } else {
+                $("#" + divID).append(html);
+            }
+            loadImage();
+        });
+    }
+
+    //加载图片
+    function loadImage() {
+        setTimeout(function () {
+            $("img.lazy").lazyload();
+            $("img.swiper-lazy").lazyload();
+            window.scrollTo('0', '1');
+            window.scrollTo('1', '0');
+        }, 300);
+    }
+
+    //格式花时间
+    function formateTiem(time) {
+        if (!time) {
+            return '';
+        }
+        var fmt = "yy-MM-dd hh:mm";
+        var date = new Date(time);
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        var o = {
+            'M+': date.getMonth() + 1,
+            'd+': date.getDate(),
+            'h+': date.getHours(),
+            'm+': date.getMinutes(),
+            's+': date.getSeconds()
+        };
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                var str = o[k] + '';
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : ('00' + str).substr(str.length));
+            }
+        }
+        return fmt;
+    }
+</script>
