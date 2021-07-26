@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style/authority/main_css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div>
+
+    <div>多台备份主要涉及到 备份离线新加用户，备份离线订单，备份离线交班单</div>
+    <div class="title_content">多台备份需要搭建本地服务器，然后从本地数据库查询本地需要的备份信息</div>
+    <div class="title_content"> 本地服务器端口号stage 和qa 环境 为 8081，生产环境为8080</div>
+    <div class="title_content"> 涉及的全为局域网内通信，访问如：xxx.xxx.xxx.xxx:8080/（xxx.xxx.xxx.xxx为ip地址）</div>
+    <div class="title_content"> 访问全为http post 请求，post参数 拼接到url 后面</div>
+    <div class="title_content"> 为了防止开发中 开发环境数据串环境，收银机上面安装了 正式版和测试版串环境，备份路径目录 前加了不同目录</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            开发版和测试版 app配置不同ID 开发版: com.zz.pos.test ,正式版：com.zzpos
+            stage环境：qdama-pos-stage, QA 环境：qdama-pos-qa 线上环境：L
+
+            当前app版本当前环境 备份访问前面路径为，和接收备份校验路径如下，
+            测试版 开发环境如下：
+            xxx.xxx.xxx.xxx:8080/com.zz.pos.test/qdama-pos-stage/
+            正式版，正式环境如下：
+            xxx.xxx.xxx.xxx:8080/com.zz.pos/L/
+            各种切换环境组合以此类推
+        </xmp>
+    </div>
+    <div class="title_content">1 备份新加店员</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            正式版，正式环境如下：
+            1.1  xxx.xxx.xxx.xxx:8080/com.zz.pos/L/api/backupsnewuser?listUser=""&fromSn=      //listUser备份用户列表json  fromSn 从哪台sn请求来的备份
+            1.2  listUser 从新加店员表中查询出全部店员
+        </xmp>
+    </div>
+    <div class="title_content">2 备份订单 单条备份</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            2.1  xxx.xxx.xxx.xxx:8080/com.zz.pos/L/api/backupsOrder?orderJson=""&fromSn=""      //orderJson 备份订单json fromSn 从哪台sn请求来的备份
+            2.2 orderJson 为 从离线订单表中 查询出一条达到备份条件的 订单转json,成功后继续备份下一条
+        </xmp>
+    </div>
+    <div class="title_content">3 备份交班记录 单条备份</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            3.1  xxx.xxx.xxx.xxx:8080/com.zz.pos/L/api/backupsReceipt?receiptJson=""&fromSn=""      //receiptJson 备份交班json  fromSn 从哪台sn请求来的备份
+            3.2 orderJson 为 从离线交班表中 查询出一条达到备份条件的 交班记录转json,成功后继续备份下一条
+        </xmp>
+    </div>
+</div>
+</body>
+</html>

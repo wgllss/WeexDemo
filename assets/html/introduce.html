@@ -53,32 +53,49 @@
 
 </style>
 <body>
-    <div class="header_title">使用说明</div>
-    <div class="title_lable">
-        <p>1.首先html头部要 添加引用 以下固定js文件，该js文件不需要放置在服务端已经放置在客户端里面了</br>
-            <xmp class="xml_bg">
-<script> type = "text/javascript" src = "../js/WebViewJavascriptBridge.js" ></script>
-            </xmp>
-        </p>
-    </div>
+<div class="header_title">使用说明</div>
+<div class="title_lable">
+    <p>1.首先html头部要 添加引用 以下固定js文件，该js文件不需要放置在服务端已经放置在客户端里面了</br>
+        <xmp class="xml_bg">
+            <script> type = "text/javascript"
+            src = "../js/WebViewJavascriptBridge.js" ></script>
+        </xmp>
+    </p>
+</div>
+<div id="scale">
+
+</div>
 </body>
 </html>
 
 <script>
     connectWebViewJavascriptBridge(function (bridge) {
         bridge.init(function (options, responseCallback) { //接收初始值 固定方法
-            options = JSON.parse(options);
-            skinType = options.skinType;
-            isLoadImage = options.isLoadImage;
+            // options = JSON.parse(options);
+            //skinType = options.skinType;
+            //isLoadImage = options.isLoadImage;
+
+            // alert("1111");
 
             //主动调用下拉刷新
-            window.WebViewJavascriptBridge.callHandler("native_setRefreshing", null);
+            // window.WebViewJavascriptBridge.callHandler("native_setRefreshing", null);
 
             //设置成不滑动返回
-            window.WebViewJavascriptBridge.callHandler('native_setOnDrawerBackEnabled', "0", null);
+            //window.WebViewJavascriptBridge.callHandler('native_setOnDrawerBackEnabled', "0", null);
 
             //设置不缩放字体
             // window.WebViewJavascriptBridge.callHandler('native_setZoomTextSize', '0', null);
+        });
+
+        bridge.registerHandler("native_onEventReceive", function (data, responseCallback) {//接收广播
+            data = JSON.parse(data);
+            var str = "";
+            if(data.status_flag == '1'){
+                str = "稳定";
+            }else{
+                str = "不稳定";
+            }
+            $("#scale").html("重量："+data.netWeight +"kg     皮重："+data.pnnet +"kg   稳定状态："+str);
         });
 
         bridge.registerHandler("native_onPullDown", function (data, responseCallback) {//下拉刷新 固定方法

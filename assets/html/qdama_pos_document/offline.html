@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style/authority/main_css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div >
+    <div>1.离线收银首先得在本地建立 商品，用户，订单，交班，常用存储表,新加店员表，传称快捷键表</div>
+    <div class="title_content">1.1 商品表格字段见 收银机 商品同步全量接口，同时增加以下字段</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            CREATE_URL_IP
+            //由于我们 开发环境有 测试环境：stage ， QA环境， 线上环境， 用这个字段区分 如：stage环境：qdama-pos-stage, QA 环境：qdama-pos-qa 线上环境：L， 后面本地表中添加该字段同理
+        </xmp>
+    </div>
+    <div class="title_content">1.2 用户表， 字段见下载该门店所有店员接口，同时增加 CREATE_URL_IP 字段</div>
+    <div class="title_content">1.3.1 订单表， 字段如下：javabean 字段,映射到 数据库表字段名称全部大写：</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+             Long id;
+             String offlineorderid; //订单号：取当时时间戳+设备SN+门店ID+登录离线店员手机号+该订单总价+现金支付价+找零价+抹分价+实际订单对象hashcode+订单对象hashcode， 生成后的订单hashcode+4位随机数,生成后的订单号去掉"-"为本次生成的离线订单号
+             String orderJson;//订单详情  创建点单的真实数据 存json
+             long orderat;//下单时间
+             String customerphone;//下单用户
+             String title;//商品明细
+             double pricetotal;//总金额 取总售价之和 应收金额
+             String orderstatus;//订单状态
+             String synstatus;//同步状态
+             long synTime;//同步成功时间
+             int orderstatusvalue = 0;//退款后设置为5
+             long refundTime;//退款时间
+
+             long createTime;//插入时间
+             String createSn;//创建订单时哪台设备
+             String backupsSns;//那些设备备份过
+             String backupsTime;//备份时间
+             String backupsRefundSn;//备份过退款的设备
+             String backupsRefundTime;//备份退款时间
+             String createUrlIp;//哪个环境
+             int versionCode;//创建时app 版本
+        </xmp>
+    </div>
+    <div class="title_content">1.3.2 订单真实数据（1.3.1中orderJson 值） 如下 javabean 字段值：</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private double cashpayamt;//现金支付金额 取最终支付现金金额 , 实收现金
+            private double changehandleamt;//零钱抹分处理金额
+            private double origintotal;//商品总价 包括加上优惠的价格 加上抹分
+            private double payamtbeforecash;//应收金额
+            private double cashchangeamt;//找零
+            private String devicecode;//设备号
+            private String offlineorderid;//离线订单号
+            private long orderat;//下单时间
+            private double pricetotal;//总金额 取总售价之和 应收金额 减去抹分 减去优惠
+            private List<ProductBean> products;//商品列表
+            private double promoamt;//优惠金额 ,
+            private String promotioncode;//夜间促销编号
+            private String discount;//优惠打折
+            private String outercode;
+            private String salesclerkphone;//收银员手机号
+            private String shopid;//门店ID
+            private String shopname;//门店名称
+            private String cashier;//收银员
+            private int productcount;//件数合计
+
+            private int createversioncode;//创建时app 版本
+            private long createtime;//插入时间
+            private String createsn;//哪台设备
+            private String createurlip;//哪个环境
+
+            private int hasrefunded;//1退货单 0 未退单
+            private long refundtime;//退款时间
+
+            private String tel;//门店电话
+        </xmp>
+    </div>
+    <div class="title_content">1.3.3 订单表中商品数据(1.3.2中products数据 和 在线购物车里面商品数据格式一样)， 字段如下：javabean 字段</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private String skucode; //商品编码
+            private String shopid;  //门店ID
+            private String tenantid;//商户ID
+            private String title;   //商品标题
+            private String skuname; //商品名称
+            private String barcode; //条码
+            private String specdesc; //规格信息
+            private int goodstagid;     //商品标识ID 0标品 1散称称重 2多规格原称重
+            private boolean weightflag;//散称标识
+            private double num;         //商品份数
+            private double specnum;     //规格数量
+            private int spectype;       //规格类型
+            private String pricetag;    //商品价格标签 会员xx折 促销 ,
+            private int pricetagid;     //商品价格标签类型 1会员价 2促销折扣 3直降
+            private PriceBean price;    //价格信息
+            private String mainimg;//商品图片
+            private String saleunit;//售卖单位
+        </xmp>
+    </div>
+    <div class="title_content">1.3.4 订单表中商品数据(1.3.3中price数据 和 在线购物车里面商品数据格式一样)， 字段如下：javabean 字段</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private double originprice;  //原价
+            private double saleprice;    //售价
+            private double total;           //小计
+            private String unit;            //售卖单位
+            private String salepricedesc;   //售价描述 收银机用
+            private String originpricedesc; //原价描述 收银机用
+            private double origintotal;     //原价小计
+            private int strikeout;          //是否需要删除线 1为是 0为否
+            private double promoamt;        //收银机小票用 优惠金额 含订单优惠和单品优惠
+        </xmp>
+    </div>
+    <div class="title_content">1.4 交班表 字段如下：javabean 字段,映射到 数据库表字段名称全部大写：</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private Long id;
+            private String cashier;  //收银员
+            private double cashtotalamt;//应有总现金
+            private long endtime;        //结束时间
+            private double netsaleamt;   //营业净额
+            private String operatetimestr;  //交班日期
+            private String receiptdetail; //交班小票明细    详细见在线收银  查询收银机交班小票  接口/pos/queryreceipt
+            private long starttime;       //开始时间
+            private double totalpayment;  //支付合计
+            private long synTime;//离线交班单上传同步成功时间
+            private String offlineReceiptID;//交班唯一交班单号
+
+            private long createTime;//插入时间
+            private String createSn;//哪台设备
+            private String createUrlIp;//哪个环境
+            private int versionCode;//创建时app 版本
+            private String backupsSn;//已经备份的设备
+            private String backupsSnTime;//备份时时间
+        </xmp>
+    </div>
+    <div class="title_content">1.4.1 交班表真实数据（1.4中 receiptdetail数据值） 字段如下：详细见在线收银  查询收银机交班小票  接口/pos/queryreceipt</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private String cashier;       //收银员
+            private String offlineReceiptID;//交班唯一交班单号
+            private String shopid;  //门店ID
+            private String saleclerkphone; // 收银员手机号 ,
+            private String devicecodeSerial; //设备序列号
+
+            private List<ReceiptItem> basicinfo;  //基础信息部部分 ,
+            private List<ReceiptItem> incomedetails; //收入明细 ,
+            private List<ReceiptItem> bottomdetails;  //底部明细 ,
+
+            private ReceiptItem serial;//序
+            private ReceiptItem devicecode;//机
+            private ReceiptItem shiftcode;//SHIFT帐序
+            private ReceiptItem title;//"HIFT 帐
+            private ReceiptItem totalamount;//支付合计
+            private ReceiptItem changeamt;//零 钱 包
+        </xmp>
+    </div>
+    <div class="title_content">1.5 常用存储表 主要用于通过不同的条件字段 存不同的json 数据值 javabean 字段,映射到 数据库表字段名称全部大写： </div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private long id;
+            private String json;//存入json
+            private String devicesn;//哪台设备号保存
+            private String userID;//当前店员ID
+            private String condition;//条件
+            private String createTime;//创建时间
+            private String createUrlIp;//哪个环境
+        </xmp>
+    </div>
+    <div class="title_content">1.6 新加店员表 javabean 字段,映射到 数据库表字段名称全部大写： </div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private Long id;
+            private String loginaccount;   //手机号
+            private String nickname;       //名字
+
+            private long createTime;//插入时间
+            private String createSn;//哪台设备
+            private String createUrlIp;//哪个环境
+            private int versionCode;//创建时app 版本
+            private String backupsSn;   //已经备份的设备
+            private String backupsTime; //备份时时间
+        </xmp>
+    </div>
+    <div class="title_content">1.7 传称快捷键表 javabean 字段,映射到 数据库表字段名称全部大写： </div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            private Long id;
+
+            private String shopid;
+
+            private String skucode;
+
+            private String skuname;
+
+            private String scaleip;
+
+            private String scaletype;
+
+            private String scaletypename;
+
+            private String keyplanname;
+
+            private String keyno;
+
+            private String pno;
+
+            private String yno;
+
+            private String xno;
+
+            private long synTime;//同步时间
+        </xmp>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style/authority/main_css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div>
+    <div>涉及到电视屏接口 和 电视屏模板html </div>
+    <div class="title_content"> 电视屏接口需要搭建本地服务器，然后从本地数据库查询 收银机从服务器拉去下来展示电视屏的数据</div>
+    <div class="title_content"> 本地服务器端口号stage 和qa 环境 为 8081，生产环境为8080</div>
+    <div class="title_content"> 涉及到电视屏的全为局域网内通信，访问如：xxx.xxx.xxx.xxx:8080/（xxx.xxx.xxx.xxx为ip地址）</div>
+    <div class="title_content">1 电视屏接口</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            全http get请求
+            1.1  xxx.xxx.xxx.xxx:8080/api/getactiveskus      //畅销的商品数量60个 （数据后面追加30个 030开头猪肉数据）
+            1.2  xxx.xxx.xxx.xxx:8080/api/getpromotionskus   //今日有促销的商品
+            1.3  xxx.xxx.xxx.xxx:8080/api/getactiveskusbypork  //单独获取猪肉接口
+            1.4  xxx.xxx.xxx.xxx:8080/api/getsingleactiveskus   //单独获取畅销 60个商品
+
+            上面4接口数据结构一样
+
+            {
+            "code": 0,//为0接口返回成功 其他失败
+            "data": [{
+                "categoryid": "072001",
+                "originalprice": 12.6,
+                "promotionprice": 12.6,
+                "saleunit": "kg",
+                "skucode": "20042530",
+                "skuname": "哈密瓜",
+                "weightflag": true
+            }, {
+                "categoryid": "041001",
+                "originalprice": 97.0,
+                "promotionprice": 97.0,
+                "saleunit": "kg",
+                "skucode": "20002619",
+                "skuname": "桂花鱼",
+                "weightflag": true
+            }],
+            "message": ""
+            }
+
+
+            private String skucode;//商品码
+            private String skuname;//商品名称
+            private String categoryid;// 010开头：蔬菜 ，030开头：猪肉
+            private boolean weightflag; //是否称重
+            private String saleunit; //单位 为称重单位Kg 应该除以2
+            private double originalprice;//原价
+            private double promotionprice;//促销价
+        </xmp>
+    </div>
+    <div class="title_content">2 电视屏模板html （模板不是以文件格式，而是从服务器拉去html 字符串存储到本地数据库，访问该接口时，查询html字符串返回本次请求数据）</div>
+    <div class="title_content2">
+        <xmp class="xml_bg">
+            2.1  xxx.xxx.xxx.xxx:8080/api/televisionscreen //单独畅销显示模板
+            2.2  xxx.xxx.xxx.xxx:8080/api/televisionscreenbypork //单独显示猪肉模板
+        </xmp>
+    </div>
+
+</div>
+</body>
+</html>

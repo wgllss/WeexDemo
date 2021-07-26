@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>网易新闻</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+<link rel='stylesheet' href='../css/swiper.min.css'>
+
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/idangerous.swiper.min.js"></script>
+<!--vue 懒加载组件-->
+<script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+<style>
+    html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, a, address, cite, del, em, img, q, u, i, dl, dt, dd, ol, ul, li, form,
+    label, table, tr, th, td, caption, tbody, tfoot, thead, article, aside, details, summary, figure, figcaption, footer, header, menu, nav,
+    section, audio, input, select, textarea {
+        margin: 0;
+        padding: 0;
+        border: 0;;
+    }
+    header, footer, nav, section, menu, article, aside {
+        display: block;
+    }
+    body {
+        color: #666;
+        min-width: 320px;
+        max-width: 750px;
+        margin: 0 auto;
+        cursor: default;
+        word-break: break-all;
+        white-space: normal;
+        background-color: #f5f5f5;
+    }
+    .favor-list.swiper-container {
+        width: 100%;
+        height: 140px;
+    }
+    .swiper-slide img{
+        width: 100%;
+        height: 140px;
+    }
+    .ad_title{
+        margin-top: -35px;
+        font-size: 16px;
+        padding-left: 20px;
+        color: #ffffff;
+    }
+    .ad_page_count{
+        position: relative;
+        margin-top: -30px;
+        float: right;
+        margin-right: 20px;
+        color: #ffffff;
+        z-index:999;
+    }
+    .current_page_ad{
+        color: #fd3d3d;
+    }
+    .listview{
+        padding: 10px;
+        overflow:auto;
+    }
+    div :active{
+        background-color: #DDDDDD;
+    }
+    .left_div{
+        float: left;
+        width: 25%;
+    }
+    .right_div{
+        float: right;
+        width: 75%;
+    }
+    .title{
+        font-size: 16px;
+        color: #4a4f5a;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        margin-top: 3px;
+        -webkit-box-orient: vertical;
+        overflow:auto;
+    }
+    .title_margin_left{
+        margin-left: 10px;
+    }
+    .type{
+        color: #9c9c9c;
+    }
+    .type1{
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+    .type2{
+        margin-top:5px;
+        color: #9c9c9c;
+    }
+    .read{
+        margin-left: 10px;
+    }
+    .line{
+        background-color: #DDDDDD;
+        width: 100%;
+        height: 1px;
+        overflow:auto;
+    }
+    .gird_layout{
+        width: 100%;
+        height:70px;
+        margin-top: 5px;
+        text-align:center;
+    }
+    .box{
+        width: 100%;
+    }
+    .box li{
+        display:inline-block;
+        float:left;
+        width:32.5%;
+        height:70px;
+    }
+    .box li a img {
+        width:99%;
+        height:70px;
+    }
+</style>
+
+<!-- header ad -->
+<div id ="main">
+<div id="header_ad">
+    <div class="swiper-container favor-list" >
+        <div class="swiper-wrapper" v-if="list.length > 0">
+            <div class="swiper-slide" v-for="item in list">
+                <img :src="item.url" class="swiper-lazy">
+                <div class="ad_title">{{ item.title}}</div>
+            </div>
+        </div>
+        <div class="swiper-pagination "></div>
+        <div class="ad_page_count"><span class="current_page_ad">1</span>/{{ list.length }}</div>
+    </div>
+</div>
+<div id="listview" v-if="list2.length > 0">
+    <div v-for="item in list2">
+
+        <div class="listview"  v-if= "item.imgsrc3gtype == 1" onclick="javascript:onClickItem(&quot;{{ item.docid}}&quot;)  ">
+            <div>
+                <div class="left_div">
+                    <img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png" v-lazy=" item.picInfo[0].url "/>
+                </div>
+                <div class="right_div">
+                    <div class="title title_margin_left">{{item.title}}</div>
+                    <div class="type type1"><span>{{ item.source}}</span><span class="read">{{ item.tcount }}阅读</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="listview" v-if= "item.imgsrc3gtype == 2" onclick="javascript:onClickItem(&quot;{{ item.docid}}&quot;)">
+            <div class="title">{{ item.title}}</div>
+            <div class="gird_layout">
+                <ul class="box">
+                    <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  v-lazy=" item.picInfo[0].url "/></a></li>
+                    <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  v-lazy="item.picInfo[1].url "/></a></li>
+                    <li><a  ><img class="lazy" width="100%" height="70px" src = "../images/wangyedefault.png"  v-lazy=" item.picInfo[2].url "/></a></li>
+                </ul>
+            </div>
+            <div class="type2 "><span>{{ item.source}}</span><span class="read">{{ item.tcount }}阅读</span></div>
+        </div>
+        <div class="line"></div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+<script>
+    var webviewAndroidScript =window.injs;
+    var isLoadImage = "Y";//有无图模式 Y有，N无
+    var skinType = "0";//皮肤模式 0：白天，1：夜间
+    var ad_swiper_count;
+    var pageNo = 1;
+
+//    var url = "";
+    var url = "https://3g.163.com/touch/nc/api/user/recommend/GuessLike/3-0-10-40.do?";
+
+    // var data = {
+    //     list: [
+    //
+    //     ]
+    // };
+    //
+    // var list =[];
+    Vue.use(VueLazyload, {
+        preLoad: 1.3,
+        error: '../images/wangyedefault.png',
+        loading: '../images/wangyedefault.png',
+        attempt: 1
+    })
+
+
+
+    var vm = new Vue({
+        el: '#main',
+        data: {
+            list: [
+
+            ],
+            list2:[
+
+            ]
+        }
+    });
+    var  mySwiper ;
+
+    //接收初始值 固定方法
+    function initValue(options) {
+
+        options= JSON.parse(options);
+        skinType = options.skinType;
+        isLoadImage = options.isLoadImage;
+
+        webviewAndroidScript.setOnDrawerBackEnabled("1");//设置成不滑动返回
+        webviewAndroidScript.setZoomTextSize("1");//设置不缩放字体
+
+        webviewAndroidScript.setRefreshing();
+    }
+
+    //下拉刷新 固定方法
+    function onPullDown() {
+        pageNo = 1;
+        requestHttp();
+
+    }
+
+    //上拉加载更多 固定方法
+    function onPullUp() {
+        pageNo++;
+        requstListData();
+    }
+
+    //点击顶部右边 viwpager 固定方法
+    function onClickTopRight(position) {
+    }
+
+    //点击顶部左边 viwpager 固定方法
+    function onClickTopLeft(position) {
+    }
+
+    //onPageSelected viwpager 固定方法
+    function onPageSelected(position) {
+    }
+
+    function requestHttp(){
+        //String msgWhat, String whichThred1, String whichThred2, String url, String requestMethod, String paramsJson, final String specialHtml
+        var paramsJson = "{\"hasad\":\""+pageNo+"\",\"size\":\"0\"}";
+        webviewAndroidScript.networkRequest("7005","0","0","https://3g.163.com/touch/jsonp/sy/recommend/0-10.html?","GET",paramsJson,"1");
+    }
+    
+    function requstListData() {
+        var paramsJson = "{\"offset\":\"1\",\"size\":\"20\"}";
+        webviewAndroidScript.networkRequest("7006","0","0",url,"GET",paramsJson,"1");
+    }
+
+    //网络成功回调数据 固定方法 strMsgWhat：哪一个接口, strMsgArg1：区分哪一个线程标志1, strMsgArg2：区分哪一个线程标志2,json：返回json .
+    function netWorkCallBack(strMsgWhat, strMsgArg1, strMsgArg2, json) {
+        if (strMsgWhat == 7005) {
+            try{
+                json = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
+                json = json.substring(9,json.length-1);
+                json = JSON.parse(json);
+
+                if(json && json.focus && json.focus.length >0){
+                    vm.list.splice(0, vm.list.length);
+                    for (var i = 0 ;  i < json.focus.length ; i++){
+                        if(json.focus[i].picInfo && json.focus[i].picInfo.length > 0){
+                            var item = {};
+                            item.title = json.focus[i].title;
+                            item.url= json.focus[i].picInfo[0].url;
+                            vm.list.push(item);
+                        }
+                    }
+                    ad_swiper_count =  vm.list.length;
+                }
+                loadSwiper();
+                requstListData();
+            }catch (e){
+                alert(e.toString())
+            }
+        }else if (strMsgWhat == 7006) {
+           var result = webviewAndroidScript.getJson(strMsgWhat, strMsgArg1, strMsgArg2);
+            result = JSON.parse(result);
+            if(result && result.list && result.list.length > 0){
+                vm.list2.splice(0, vm.list2.length);
+                for (var i = 0 ;  i < result.list.length ; i++){
+                    vm.list2.push(result.list[i]);
+                }
+            }
+        }
+    }
+
+    //插入数据到 模板中
+    function insertHtmlData(htmlTemplateID,divID){
+        var gettpl = document.getElementById(htmlTemplateID).innerHTML;
+        laytpl(gettpl).render(data, function(html){
+            if(pageNo == 1){
+                $("#"+divID).html( html);
+            }else{
+                $("#"+divID).append( html);
+            }
+            loadImage();
+            changeSkin(skinType);
+        });
+    }
+
+    //加载swiper
+    function loadSwiper() {
+        setTimeout(function () {
+            mySwiper = new Swiper('.swiper-container', {
+                autoplay: 5000,//可选选项，自动滑动
+                lazyLoading: true,
+                lazyLoadingInPrevNext : true,
+                loop : true,
+                lazyLoadingInPrevNextAmount: 4,
+                pagination: '.swiper-pagination',
+                onSlideChangeStart: function () {
+                    var index = mySwiper.activeIndex;
+                    if(index > ad_swiper_count){
+                        index = 1;
+                    }
+                    if(index < 1){
+                        index = ad_swiper_count;
+                    }
+                    $(".current_page_ad").html(""+index);
+
+                },
+                onTouchStart: function(swiper, event){
+                    webviewAndroidScript.setViewPagerRequestDisallowInterceptTouchEvent("1");
+                }
+            });
+        }, 300);
+    }
+
+    //加载图片
+    function loadImage() {
+//        if (isLoadImage == 'Y') {//有图模式
+            setTimeout(function () {
+                $("img.lazy").lazyload();
+                $("img.swiper-lazy").lazyload();
+                window.scrollTo('0','1');
+                window.scrollTo('1','0');
+            }, 300);
+//        } else {
+//        }
+    }
+    
+    function onClickItem(id) {
+       var optionJson = [
+           {
+               "intentKey":"PULL_TO_REFRESH_MODE_KEY",
+               "intentKeyValueClassName":"String",
+               "intentKeyValue":"3"
+           },
+           {
+               "intentKey":"URL_KEY",
+               "intentKeyValueClassName":"String",
+               "intentKeyValue":"https://3g.163.com/all/article/"+id+".html#offset=1"
+           },
+           {
+               "intentKey":"TITLE_KEY",
+               "intentKeyValueClassName":"String",
+               "intentKeyValue":""
+           }
+       ];
+       webviewAndroidScript.startOtherNativeActivity2('com.atar.activitys.htmls.AtarDynamicWebViewActivity', JSON.stringify(optionJson));
+    }
+
+    //格式花时间
+    function formateTiem(time) {
+        if (!time) {
+            return '';
+        }
+        var fmt = "yy-MM-dd hh:mm";
+        var date = new Date(time);
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        var o = {
+            'M+': date.getMonth() + 1,
+            'd+': date.getDate(),
+            'h+': date.getHours(),
+            'm+': date.getMinutes(),
+            's+': date.getSeconds()
+        };
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                var str = o[k] + '';
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : ('00' + str).substr(str.length));
+            }
+        }
+        return fmt;
+    }
+
+    //设置文字大小 固定方法
+    function setTextSize(size) {
+//        if (size == 'LB') {//字体巨无霸
+//            $("P").css("font-size", "29px");
+//            $(".item_right_content p").css("line-height","52px");
+//        } else if (size == 'B') {//字体巨大
+//            $("P").css("font-size", "26px");
+//            $(".item_right_content p").css("line-height","45px");
+//        } else if (size == 'G') {//字体超大
+//            $("P").css("font-size", "23px");
+//            $(".item_right_content p").css("line-height","23px");
+//        } else if (size == 'L') {//字体大
+//            $(".zhai_yao P").css("font-size", "20px");
+//            $(".zheng_wen p").css("font-size", "20px");
+//            $(".reply_content p").css("font-size", "20px");
+//            $(".reply_reply_content p").css("font-size", "20px");
+//        } else if (size == 'M') {//字体中
+//            $(" P").css("font-size", "16px");
+//            $(".item_right_content p").css("line-height","23px");
+//        } else if (size == 'S') {//字体小
+//            $("P").css("font-size", "14px");
+//            $(".item_right_content p").css("line-height","23px");
+//        }
+    }
+
+    //改变皮肤 固定方法
+    function changeSkin(skinType) {
+        if ('1' == skinType) {//夜间模式
+
+        }else{
+
+        }
+    }
+</script>
