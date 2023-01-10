@@ -1,0 +1,83 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.wgllss.music.plugin",
+    "module": "music-source-asm",
+    "version": "1.0.10",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "music-source-asm-1.0.10.jar",
+          "url": "music-source-asm-1.0.10.jar",
+          "size": 26857,
+          "sha512": "30993320bd4acb7986b118ba360158e7c0fb9476f9d025b5bc15c21c1f172dc4c76698d3f080ea72d20cdff1d29676ddd84f1b9cf4b74079b04239350505d437",
+          "sha256": "5a02484db18277b2cbc534645f42effd22db07f4280e77bf4d39f9c826fc2072",
+          "sha1": "49c629f175a0c71e78ccd6f9cf82309b7942e27a",
+          "md5": "b0e958e788c3757341efb9934dbaee62"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.2.1"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm",
+          "version": {
+            "requires": "9.3"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-commons",
+          "version": {
+            "requires": "9.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "music-source-asm-1.0.10.jar",
+          "url": "music-source-asm-1.0.10.jar",
+          "size": 26857,
+          "sha512": "30993320bd4acb7986b118ba360158e7c0fb9476f9d025b5bc15c21c1f172dc4c76698d3f080ea72d20cdff1d29676ddd84f1b9cf4b74079b04239350505d437",
+          "sha256": "5a02484db18277b2cbc534645f42effd22db07f4280e77bf4d39f9c826fc2072",
+          "sha1": "49c629f175a0c71e78ccd6f9cf82309b7942e27a",
+          "md5": "b0e958e788c3757341efb9934dbaee62"
+        }
+      ]
+    }
+  ]
+}
